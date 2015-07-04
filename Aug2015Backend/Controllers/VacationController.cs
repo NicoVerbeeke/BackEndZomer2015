@@ -13,11 +13,13 @@ namespace Aug2015Backend.Controllers
 {
     public class VacationController : ApiController
     {   
-        private VacationAdapter _vacAdapter;
+        private VacationETMAdapter _vacToModelAdapter;
+        private VacationMTEAdapter _vacToEntityAdapter;
         private DataContext _db;
 
         public VacationController(){
-            _vacAdapter = new VacationAdapter();
+            _vacToModelAdapter = new VacationETMAdapter();
+            _vacToEntityAdapter = new VacationMTEAdapter();
             _db = new DataContext();
         }
 
@@ -29,7 +31,7 @@ namespace Aug2015Backend.Controllers
             var query = from b in _db.Vacations select b;
 
             foreach(Vacation vac in query){
-                 vacationModels.Add(_vacAdapter.MapData(vac));
+                 vacationModels.Add(_vacToModelAdapter.MapData(vac));
                     
             }
 
@@ -40,7 +42,17 @@ namespace Aug2015Backend.Controllers
         {
             var query = _db.Vacations.Where(b => b.Id == id).Select(b => b).FirstOrDefault();
 
-            return _vacAdapter.MapData(query);
+            return _vacToModelAdapter.MapData(query);
+        }
+
+        public void PostVacation(VacationModel vacModel)
+        {
+            Vacation vac = _vacToEntityAdapter.MapData(vacModel);
+
+            _db.Vacations.Add(vac);
+            _db.SaveChanges();
+            
+           
         }
     }
 }
