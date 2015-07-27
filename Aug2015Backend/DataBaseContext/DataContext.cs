@@ -17,6 +17,10 @@ namespace Aug2015Backend.DataBaseContext
 
         public virtual DbSet<Vacation> Vacations { get; set; }
         public virtual DbSet<AgeRange> AgeRanges { get; set; }
-
+        public virtual DbSet<Comment> Comment { get; set; }
+        public virtual DbSet<Period> When { get; set; }
+        public virtual DbSet<Group> Who { get; set; }
+        public virtual DbSet<Picture> Pictures { get; set; }
+        public virtual DbSet<IncludedItem> Included { get; set; }
     }
 }

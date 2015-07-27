@@ -9,7 +9,6 @@
 
 namespace Aug2015Backend.Entities
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -18,12 +17,27 @@ namespace Aug2015Backend.Entities
         public Vacation()
         {
             this.AgeRange = new HashSet<AgeRange>();
+            this.Comment = new HashSet<Comment>();
+            this.When = new HashSet<Period>();
+            this.Who = new HashSet<Group>();
+            this.Pictures = new HashSet<Picture>();
+            this.Included = new HashSet<IncludedItem>();
         }
     
         public int Id { get; set; }
         public string Titel { get; set; }
-
-        [JsonProperty(PropertyName = "Leeftijd")]
+        public int NumberOfParticipants { get; set; }
+        public string PromoText { get; set; }
+    
         public virtual ICollection<AgeRange> AgeRange { get; set; }
+        public virtual ICollection<Comment> Comment { get; set; }
+        public virtual ContactInformation ContactInformation { get; set; }
+        public virtual Location Location { get; set; }
+        public virtual ICollection<Period> When { get; set; }
+        public virtual ICollection<Group> Who { get; set; }
+        public virtual ICollection<Picture> Pictures { get; set; }
+        public virtual Picture Cover { get; set; }
+        public virtual Price Cost { get; set; }
+        public virtual ICollection<IncludedItem> Included { get; set; }
     }
 }

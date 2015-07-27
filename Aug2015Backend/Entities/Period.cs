@@ -12,19 +12,14 @@ namespace Aug2015Backend.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class AgeRange
+    public partial class Period
     {
-        public AgeRange()
-        {
-            this.Group = new HashSet<Group>();
-        }
-    
         public int Id { get; set; }
-        public int Min_leeftijd { get; set; }
-        public int Max_leeftijd { get; set; }
+        public int PeriodNr { get; set; }
+        public System.DateTime DateStart { get; set; }
+        public System.DateTime DateEnd { get; set; }
         public int VacationId { get; set; }
     
         public virtual Vacation Vacation { get; set; }
-        public virtual ICollection<Group> Group { get; set; }
     }
 }
