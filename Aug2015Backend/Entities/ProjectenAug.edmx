@@ -505,7 +505,7 @@
           <Property Name="Description" Type="String" Nullable="false" />
           <Property Name="Url" Type="String" Nullable="false" />
           <NavigationProperty Name="Vacation" Relationship="Model1.VacationPicture" FromRole="Picture" ToRole="Vacation" />
-          <Property Name="VacationId" Type="Int32" Nullable="true" />
+          <Property Name="VacationId" Nullable="true" Type="Int32" />
         </EntityType>
         <Association Name="VacationCoverPicture">
           <End Type="Model1.Vacation" Multiplicity="0..1" Role="Vacation" />

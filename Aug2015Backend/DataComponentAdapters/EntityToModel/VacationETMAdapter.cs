@@ -29,6 +29,7 @@ namespace Aug2015Backend.DataComponentAdapters
 
             if (v != null)
             {
+                mappedVacation.Pictures = pictureAdapter.MapData(v.Picture);
                 mappedVacation.Cover = pictureAdapter.MapData(v.Cover);
                 mappedVacation.PromoText = v.PromoText;
                 mappedVacation.ContactInformation = contactInformationAdapter.MapData(v.ContactInformation);
