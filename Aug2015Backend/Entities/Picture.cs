@@ -18,7 +18,7 @@ namespace Aug2015Backend.Entities
         public string Titel { get; set; }
         public string Description { get; set; }
         public string Url { get; set; }
-        public int VacationId { get; set; }
+        public Nullable<int> VacationId { get; set; }
     
         public virtual Vacation Vacation { get; set; }
     }

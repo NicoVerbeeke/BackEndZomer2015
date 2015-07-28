@@ -12,12 +12,13 @@ namespace Aug2015Backend.DataComponentAdapters.EntityToModel
         public ContactInformationModel MapData(ContactInformation ci)
         {
             ContactInformationModel cim = new ContactInformationModel();
-
-            cim.Id = ci.Id;
-            cim.Tel = ci.Tel;
-            cim.Email = ci.Email;
-            cim.VacId = ci.Vacation.Id;
-
+            if (ci != null)
+            {
+                cim.Id = ci.Id;
+                cim.Tel = ci.Tel;
+                cim.Email = ci.Email;
+                cim.VacId = ci.Vacation.Id;
+            }
             return cim;
         }
     }

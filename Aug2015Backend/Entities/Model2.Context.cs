@@ -25,15 +25,15 @@ namespace Aug2015Backend.Entities
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Vacation> VacationSet { get; set; }
-        public virtual DbSet<AgeRange> AgeRangeSet { get; set; }
-        public virtual DbSet<Comment> CommentSet { get; set; }
-        public virtual DbSet<ContactInformation> ContactInformationSet { get; set; }
-        public virtual DbSet<Group> GroupSet { get; set; }
-        public virtual DbSet<Location> LocationSet { get; set; }
-        public virtual DbSet<Period> PeriodSet { get; set; }
-        public virtual DbSet<Picture> PictureSet { get; set; }
-        public virtual DbSet<Price> PriceSet { get; set; }
-        public virtual DbSet<IncludedItem> IncludedItemSet { get; set; }
+        public virtual DbSet<Vacation> Vacations { get; set; }
+        public virtual DbSet<AgeRange> AgeRanges { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<ContactInformation> ContactInformations { get; set; }
+        public virtual DbSet<Group> Groups { get; set; }
+        public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<Period> Periods { get; set; }
+        public virtual DbSet<Picture> Pictures { get; set; }
+        public virtual DbSet<Price> Prices { get; set; }
+        public virtual DbSet<IncludedItem> IncludedItems { get; set; }
     }
 }

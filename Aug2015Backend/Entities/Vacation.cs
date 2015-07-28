@@ -20,8 +20,8 @@ namespace Aug2015Backend.Entities
             this.Comment = new HashSet<Comment>();
             this.When = new HashSet<Period>();
             this.Who = new HashSet<Group>();
-            this.Pictures = new HashSet<Picture>();
             this.Included = new HashSet<IncludedItem>();
+            this.Picture = new HashSet<Picture>();
         }
     
         public int Id { get; set; }
@@ -35,9 +35,9 @@ namespace Aug2015Backend.Entities
         public virtual Location Location { get; set; }
         public virtual ICollection<Period> When { get; set; }
         public virtual ICollection<Group> Who { get; set; }
-        public virtual ICollection<Picture> Pictures { get; set; }
         public virtual Picture Cover { get; set; }
         public virtual Price Cost { get; set; }
         public virtual ICollection<IncludedItem> Included { get; set; }
+        public virtual ICollection<Picture> Picture { get; set; }
     }
 }

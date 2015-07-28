@@ -12,12 +12,14 @@ namespace Aug2015Backend.DataComponentAdapters.EntityToModel
         public ICollection<String> MapData(ICollection<IncludedItem> items)
         {
             ICollection<String> models = new List<string>();
+            if (items != null)
+            {
+                foreach (IncludedItem i in items)
+                {
 
-            foreach (IncludedItem i in items)
-            {    
-                models.Add(i.Item);
+                    models.Add(i.Item);
+                }
             }
-
             return models;
         }
     }

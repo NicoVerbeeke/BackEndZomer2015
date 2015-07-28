@@ -12,12 +12,12 @@ namespace Aug2015Backend.DataComponentAdapters.EntityToModel
         public LocationModel MapData(Location l)
         {
             LocationModel lm = new LocationModel();
-
-            lm.Id = l.Id;
-            lm.VacationDomain = l.VacationDomain;
-            lm.City = l.City;
-            lm.VacId = l.Vacation.Id ;
-
+            if (l != null) { 
+                lm.Id = l.Id;
+                lm.VacationDomain = l.VacationDomain;
+                lm.City = l.City;
+                lm.VacId = l.Vacation.Id ;
+            }
             return lm;
         }
     }

@@ -15,19 +15,27 @@ namespace Aug2015Backend.DataComponentAdapters.EntityToModel
 
             foreach (Picture p in pictures)
             {
-                mappedPictures.Add(MapData(p));
+                if(p != null){
+                    mappedPictures.Add(MapData(p));
+                }
             }
             return mappedPictures;
         }
 
         public PictureModel MapData(Picture p){
-            PictureModel pm = new PictureModel();
-            pm.Id = p.Id;
-            pm.Titel = p.Titel;
-            pm.Description = p.Description;
-            pm.Url = p.Url;
-            pm.VacId = p.Vacation.Id;
-            return pm;            
+            if (p != null) { 
+                PictureModel pm = new PictureModel();
+                pm.Id = p.Id;
+                pm.Titel = p.Titel;
+                pm.Description = p.Description;
+                pm.Url = p.Url;
+                pm.VacId = p.VacationId;
+                return pm;
+            }
+            else
+            {
+                return new PictureModel();
+            }
         }
     }
 }

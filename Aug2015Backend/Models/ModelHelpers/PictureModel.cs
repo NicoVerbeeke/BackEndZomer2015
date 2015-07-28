@@ -12,7 +12,7 @@ namespace Aug2015Backend.Models.ModelHelpers
         public int Id { get; set; }
 
         [JsonProperty(PropertyName = "vacation")]
-        public int VacId { get; set; }
+        public int? VacId { get; set; }
 
         [JsonProperty(PropertyName = "titel")]
         public string Titel { get; set; }

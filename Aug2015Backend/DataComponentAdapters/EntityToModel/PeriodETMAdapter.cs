@@ -15,6 +15,7 @@ namespace Aug2015Backend.DataComponentAdapters.EntityToModel
 
             foreach (Period p in periods)
             {
+                if (p != null) { 
                 PeriodModel pm = new PeriodModel();
                 pm.Id = p.Id;
                 pm.PeriodNr = p.PeriodNr;
@@ -22,6 +23,7 @@ namespace Aug2015Backend.DataComponentAdapters.EntityToModel
                 pm.DateEnd = p.DateEnd;
                 pm.VacId = p.Vacation.Id;
                 mappedPeriods.Add(pm);
+                }
             }
 
             return mappedPeriods;

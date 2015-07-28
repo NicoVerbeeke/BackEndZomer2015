@@ -12,13 +12,15 @@ namespace Aug2015Backend.DataComponentAdapters.EntityToModel
         public PriceModel MapData(Price p)
         {
             PriceModel pm = new PriceModel();
-
-            pm.Id = p.Id;
-            pm.SingleStarPrice = p.SingleStarPrice;
-            pm.BasePrice = p.BasePrice;
-            pm.DoubleStarPrice = p.DoubleStarPrice;
-            pm.VacId = p.Vacation.Id;
-            return pm;
+            if (p != null)
+            {
+                pm.Id = p.Id;
+                pm.SingleStarPrice = p.SingleStarPrice;
+                pm.BasePrice = p.BasePrice;
+                pm.DoubleStarPrice = p.DoubleStarPrice;
+                pm.VacId = p.Vacation.Id;
+            }
+            return pm;            
         }
     }
 }

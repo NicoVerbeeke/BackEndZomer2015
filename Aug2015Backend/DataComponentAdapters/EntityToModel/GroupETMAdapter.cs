@@ -13,15 +13,16 @@ namespace Aug2015Backend.DataComponentAdapters.EntityToModel
         {
             AgeRangeETMAdapter arAdapter = new AgeRangeETMAdapter();
             ICollection<GroupModel> mappedGroups = new List<GroupModel>();
-            foreach (Group g in groups)
-            {
-                GroupModel gm = new GroupModel();
-
-                gm.Id = g.Id;
-                gm.GroupNr = g.GroupNr;
-                gm.AgeRange = arAdapter.MapData(new List<AgeRange>(){g.AgeRange}).ToList()[0];
-                gm.VacId = g.VacationId;
-                mappedGroups.Add(gm);
+            if (groups != null) { 
+                foreach (Group g in groups)
+                {
+                    GroupModel gm = new GroupModel();
+                    gm.Id = g.Id;
+                    gm.GroupNr = g.GroupNr;
+                    gm.AgeRange = arAdapter.MapData(new List<AgeRange>(){g.AgeRange}).ToList()[0];
+                    gm.VacId = g.VacationId;
+                    mappedGroups.Add(gm);
+                }
             }
             return mappedGroups;
         }

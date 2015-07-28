@@ -12,16 +12,19 @@ namespace Aug2015Backend.DataComponentAdapters.EntityToModel
         public ICollection<CommentModel> MapData(ICollection<Comment> comments)
         {
             ICollection<CommentModel> commentModels = new List<CommentModel>();
-            foreach (Comment c in comments)
+            if (comments != null)
             {
-                CommentModel m = new CommentModel();
+                foreach (Comment c in comments)
+                {
+                    CommentModel m = new CommentModel();
 
-                m.Id = c.Id;
-                m.Titel = c.Titel;
-                m.Text = c.Text;
-                m.Url = c.Url;
-                m.VacId = c.VacationId;
-                commentModels.Add(m);
+                    m.Id = c.Id;
+                    m.Titel = c.Titel;
+                    m.Text = c.Text;
+                    m.Url = c.Url;
+                    m.VacId = c.VacationId;
+                    commentModels.Add(m);
+                }
             }
             return commentModels;
         }

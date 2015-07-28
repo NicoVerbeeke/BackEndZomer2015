@@ -10,25 +10,24 @@
         <AssociationConnector Association="Model1.VacationAgeRange" />
         <EntityTypeShape EntityType="Model1.Comment" Width="1.5" PointX="2" PointY="3" />
         <AssociationConnector Association="Model1.VacationComment" />
-        <EntityTypeShape EntityType="Model1.ContactInformation" Width="1.5" PointX="5.875" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.ContactInformation" Width="1.5" PointX="5.5" PointY="5" IsExpanded="true" />
         <AssociationConnector Association="Model1.VacationContactInformation" />
-        <EntityTypeShape EntityType="Model1.Group" Width="1.5" PointX="4.125" PointY="5" />
+        <EntityTypeShape EntityType="Model1.Group" Width="1.5" PointX="3.75" PointY="5" />
         <AssociationConnector Association="Model1.GroupAgeRange" ManuallyRouted="false" >
         </AssociationConnector>
-        <EntityTypeShape EntityType="Model1.Location" Width="1.5" PointX="11.625" PointY="2.125" />
+        <EntityTypeShape EntityType="Model1.Location" Width="1.5" PointX="11.5" PointY="2.125" />
         <AssociationConnector Association="Model1.VacationLocation" />
         <EntityTypeShape EntityType="Model1.Period" Width="1.5" PointX="13.25" PointY="2.125" />
         <AssociationConnector Association="Model1.VacationPeriod" />
         <AssociationConnector Association="Model1.VacationGroup" ManuallyRouted="false" >
         </AssociationConnector>
-        <EntityTypeShape EntityType="Model1.Picture" Width="1.5" PointX="9.75" PointY="2.875" />
-        <AssociationConnector Association="Model1.VacationPictureModel" ManuallyRouted="false" >
-        </AssociationConnector>
+        <EntityTypeShape EntityType="Model1.Picture" Width="1.5" PointX="9.75" PointY="1.625" />
         <AssociationConnector Association="Model1.VacationCoverPicture" />
-        <EntityTypeShape EntityType="Model1.Price" Width="1.5" PointX="8" PointY="5" />
+        <EntityTypeShape EntityType="Model1.Price" Width="1.5" PointX="8.375" PointY="5.375" />
         <AssociationConnector Association="Model1.VacationPrice" />
         <EntityTypeShape EntityType="Model1.IncludedItem" Width="1.5" PointX="2.625" PointY="1.125" />
         <AssociationConnector Association="Model1.VacationIncludedItem" />
+        <AssociationConnector Association="Model1.VacationPicture" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
