@@ -260,6 +260,8 @@
     <Content Include="Entities\Model1.edmx.sql" />
     <Content Include="Entities\ProjectenAug.edmx.sql" />
     <Content Include="Global.asax" />
+    <Content Include="PopulateDB\dropTablesQuery.sql" />
+    <Content Include="PopulateDB\populateTablesQuery.sql" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

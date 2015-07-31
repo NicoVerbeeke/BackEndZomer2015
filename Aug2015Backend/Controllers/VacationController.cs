@@ -24,6 +24,7 @@ namespace Aug2015Backend.Controllers
         }
 
         // api/vacation
+        // retrieve all vacations
         public IEnumerable<VacationModel> GetAllProducts()
         {
             ICollection<VacationModel> vacationModels = new List<VacationModel>();
@@ -34,25 +35,25 @@ namespace Aug2015Backend.Controllers
                  vacationModels.Add(_vacToModelAdapter.MapData(vac));
                     
             }
-
             return vacationModels;
         }
 
+        // api/vacation/{id}
+        // retrieve a single vacation with the matching Id
         public VacationModel GetVacation(int id)
         {
             var query = _db.Vacations.Where(b => b.Id == id).Select(b => b).FirstOrDefault();
-
             return _vacToModelAdapter.MapData(query);
         }
-
+        
+        // api/vacation
+        // add a vacation to the list
         public void PostVacation(VacationModel vacModel)
         {
             Vacation vac = _vacToEntityAdapter.MapData(vacModel);
 
             _db.Vacations.Add(vac);
-            _db.SaveChanges();
-            
-           
+            _db.SaveChanges();                       
         }
     }
 }

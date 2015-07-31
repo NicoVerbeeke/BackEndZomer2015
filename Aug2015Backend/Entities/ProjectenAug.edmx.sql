@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 07/28/2015 19:40:28
+-- Date Created: 07/31/2015 20:34:29
 -- Generated from EDMX file: C:\Users\Nico\Documents\ProjectenAugustus2015\BackEndZomer2015\Aug2015Backend\Entities\ProjectenAug.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [PojectAug];
+USE [ProjectAug];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -38,9 +38,6 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_VacationGroup]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Groups] DROP CONSTRAINT [FK_VacationGroup];
 GO
-IF OBJECT_ID(N'[dbo].[FK_VacationPictureModel]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Pictures] DROP CONSTRAINT [FK_VacationPictureModel];
-GO
 IF OBJECT_ID(N'[dbo].[FK_VacationCoverPicture]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Pictures] DROP CONSTRAINT [FK_VacationCoverPicture];
 GO
@@ -49,6 +46,9 @@ IF OBJECT_ID(N'[dbo].[FK_VacationPrice]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_VacationIncludedItem]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[IncludedItems] DROP CONSTRAINT [FK_VacationIncludedItem];
+GO
+IF OBJECT_ID(N'[dbo].[FK_VacationPicture]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Pictures] DROP CONSTRAINT [FK_VacationPicture];
 GO
 
 -- --------------------------------------------------
