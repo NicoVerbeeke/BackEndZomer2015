@@ -46,6 +46,12 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.0.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.0.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin">
       <HintPath>..\packages\Microsoft.Owin.2.0.2\lib\net45\Microsoft.Owin.dll</HintPath>
@@ -175,28 +181,71 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiApplication.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="AuthRepository.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\VacationController.cs" />
+    <Compile Include="DataBaseContext\AuthContext.cs" />
     <Compile Include="DataBaseContext\DataContext.cs" />
-    <Compile Include="DataComponentAdapters\EntityToModel\AgeRangeETMAdapter.cs" />
-    <Compile Include="DataComponentAdapters\EntityToModel\CommentETMAdapter.cs" />
-    <Compile Include="DataComponentAdapters\EntityToModel\ContactInformationETMAdapter.cs" />
-    <Compile Include="DataComponentAdapters\EntityToModel\GroupETMAdapter.cs" />
-    <Compile Include="DataComponentAdapters\EntityToModel\IncludedItemETMAdapter.cs" />
-    <Compile Include="DataComponentAdapters\EntityToModel\LocationETMAdapter.cs" />
-    <Compile Include="DataComponentAdapters\EntityToModel\PeriodETMAdapter.cs" />
-    <Compile Include="DataComponentAdapters\EntityToModel\PictureETMAdapter.cs" />
-    <Compile Include="DataComponentAdapters\EntityToModel\PriceETMAdapter.cs" />
-    <Compile Include="DataComponentAdapters\EntityToModel\VacationETMAdapter.cs" />
-    <Compile Include="DataComponentAdapters\ModelToEntity\AgeRangeMTEAdapter.cs" />
-    <Compile Include="DataComponentAdapters\ModelToEntity\CommentMTEAdapter.cs" />
-    <Compile Include="DataComponentAdapters\ModelToEntity\ContactInformationMTEAdapter.cs" />
-    <Compile Include="DataComponentAdapters\ModelToEntity\GroupMTEAdapter.cs" />
-    <Compile Include="DataComponentAdapters\ModelToEntity\IncludedItemMTEAdapter.cs" />
-    <Compile Include="DataComponentAdapters\ModelToEntity\LocationMTEAdapter.cs" />
-    <Compile Include="DataComponentAdapters\ModelToEntity\PeriodMTEAdapter.cs" />
-    <Compile Include="DataComponentAdapters\ModelToEntity\PictureMTEAdapter.cs" />
-    <Compile Include="DataComponentAdapters\ModelToEntity\PriceMTEAdapter.cs" />
-    <Compile Include="DataComponentAdapters\ModelToEntity\VacationMTEAdapter.cs" />
+    <Compile Include="DataComponentAdapters\EntityToModel\AgeRangeETMAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataComponentAdapters\EntityToModel\CommentETMAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataComponentAdapters\EntityToModel\ContactInformationETMAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataComponentAdapters\EntityToModel\GroupETMAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataComponentAdapters\EntityToModel\IncludedItemETMAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataComponentAdapters\EntityToModel\LocationETMAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataComponentAdapters\EntityToModel\PeriodETMAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataComponentAdapters\EntityToModel\PictureETMAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataComponentAdapters\EntityToModel\PriceETMAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataComponentAdapters\EntityToModel\VacationETMAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataComponentAdapters\ModelToEntity\AgeRangeMTEAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataComponentAdapters\ModelToEntity\CommentMTEAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataComponentAdapters\ModelToEntity\ContactInformationMTEAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataComponentAdapters\ModelToEntity\GroupMTEAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataComponentAdapters\ModelToEntity\IncludedItemMTEAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataComponentAdapters\ModelToEntity\LocationMTEAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataComponentAdapters\ModelToEntity\PeriodMTEAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataComponentAdapters\ModelToEntity\PictureMTEAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataComponentAdapters\ModelToEntity\PriceMTEAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataComponentAdapters\ModelToEntity\VacationMTEAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Entities\AgeRange.cs">
       <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
@@ -253,6 +302,7 @@
     <Compile Include="Models\ModelHelpers\PeriodModel.cs" />
     <Compile Include="Models\ModelHelpers\PictureModel.cs" />
     <Compile Include="Models\ModelHelpers\PriceModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\VacationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
