@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
-using System.Web.Mvc;
 
 namespace Aug2015Backend.Controllers
 {
@@ -25,7 +24,7 @@ namespace Aug2015Backend.Controllers
 
         // api/vacation
         // retrieve all vacations
-        public IEnumerable<VacationModel> GetAllProducts()
+        public IEnumerable<VacationModel> GetAllVacations()
         {
             ICollection<VacationModel> vacationModels = new List<VacationModel>();
             

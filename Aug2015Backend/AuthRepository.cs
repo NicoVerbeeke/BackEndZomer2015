@@ -45,7 +45,7 @@ namespace Aug2015Backend
         {
             _ctx.Dispose();
             _userManager.Dispose();
-
         }
+
     }
 }

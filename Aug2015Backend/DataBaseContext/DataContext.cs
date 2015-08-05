@@ -1,4 +1,5 @@
 ﻿using Aug2015Backend.Entities;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

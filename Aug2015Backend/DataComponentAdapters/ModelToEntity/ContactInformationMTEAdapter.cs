@@ -15,10 +15,13 @@ namespace Aug2015Backend.DataComponentAdapters.ModelToEntity
         {
             ContactInformation ci = new ContactInformation();
 
-            ci.Id = contactInformationModel.Id;
-            ci.Tel = contactInformationModel.Tel;
-            ci.Email = contactInformationModel.Email;
-            //ci.Vacation = vacationAdapter.getVacation(p);
+            if (contactInformationModel != null)
+            {
+                ci.Id = contactInformationModel.Id;
+                ci.Tel = contactInformationModel.Tel;
+                ci.Email = contactInformationModel.Email;
+                //ci.Vacation = vacationAdapter.getVacation(p);
+            }
 
             return ci;
         }

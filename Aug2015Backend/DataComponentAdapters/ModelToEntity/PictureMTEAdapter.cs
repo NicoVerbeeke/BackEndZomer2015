@@ -15,12 +15,15 @@ namespace Aug2015Backend.DataComponentAdapters.ModelToEntity
         {
             Picture pic = new Picture();
 
-            pic.Id = pictureModel.Id;
-            pic.Titel = pictureModel.Titel;
-            pic.Url = pictureModel.Url;
-            pic.Description = pictureModel.Description;
-            //pic.Vacation = vacationAdapter.getVacation(p);
-            pic.VacationId = p;
+            if (pictureModel != null)
+            {
+                pic.Id = pictureModel.Id;
+                pic.Titel = pictureModel.Titel;
+                pic.Url = pictureModel.Url;
+                pic.Description = pictureModel.Description;
+                //pic.Vacation = vacationAdapter.getVacation(p);
+                pic.VacationId = p;
+            }
             return pic;
         }
 
