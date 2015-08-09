@@ -28,6 +28,7 @@ namespace Aug2015Backend.Entities
         public string Titel { get; set; }
         public int NumberOfParticipants { get; set; }
         public string PromoText { get; set; }
+        public bool Tax_Benefit { get; set; }
     
         public virtual ICollection<AgeRange> AgeRange { get; set; }
         public virtual ICollection<Comment> Comment { get; set; }

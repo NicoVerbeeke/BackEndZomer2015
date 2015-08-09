@@ -11,14 +11,13 @@ namespace Aug2015Backend.DataComponentAdapters.ModelToEntity
     {
         //private VacationMTEAdapter vacationAdapter = new VacationMTEAdapter();
 
-        public Location MapData(LocationModel locationModel, int p)
+        public Location MapData(LocationModel locationModel)
         {
             Location l = new Location();
 
             l.Id = locationModel.Id;
             l.City = locationModel.City;
             l.VacationDomain = locationModel.VacationDomain;
-            //l.Vacation = vacationAdapter.getVacation(p);
             return l;
         }
     }

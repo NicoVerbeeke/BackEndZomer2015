@@ -44,7 +44,8 @@ namespace Aug2015Backend.DataComponentAdapters
                 ICollection<AgeRangeModel> ageRanges = arAdapter.MapData(v.AgeRange);
                 mappedVacation.Leeftijd = ageRanges;
                 mappedVacation.Titel = v.Titel;
-                mappedVacation.Id = v.Id;            
+                mappedVacation.Id = v.Id;
+                mappedVacation.Tax_Benefit = v.Tax_Benefit;
             }          
 
             return mappedVacation;

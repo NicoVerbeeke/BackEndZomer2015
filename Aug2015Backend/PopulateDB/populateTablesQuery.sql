@@ -5,11 +5,11 @@ GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
 
-Insert into Vacations([Titel], [NumberOfParticipants], [PromoText]) values ('kinderboerderij', 30, 'Op deze kinderboerderijvakantie verblijf je echt tussen de dieren.
+Insert into Vacations([Titel], [NumberOfParticipants], [PromoText], [Tax_Benefit]) values ('kinderboerderij', 30, 'Op deze kinderboerderijvakantie verblijf je echt tussen de dieren.
 Samen met de vele vriendjes en onze monitoren leer je op een plezante manier het leven op een echte boerderij kennen.
 Zo staan het voederen van de dieren, een ritje met de pony, het bakken van je eigen broodjes en nog zoveel meer op het programma.
 Alle dieren op de boerderij wachten vol ongeduld op jouw knuffels en goede zorgen.
-Wees er dus als de kippen bij en schrijf je snel in voor deze superweek!');
+Wees er dus als de kippen bij en schrijf je snel in voor deze superweek!', 1);
 
 Insert into AgeRanges([Min_leeftijd], [Max_leeftijd], [VacationId]) values(4, 6, 1);
 Insert into AgeRanges([Min_leeftijd], [Max_leeftijd], [VacationId]) values(7, 10, 1);

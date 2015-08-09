@@ -1,4 +1,5 @@
 ﻿using Aug2015Backend.Entities;
+using Aug2015Backend.Models.ModelHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,20 +11,23 @@ namespace Aug2015Backend.DataComponentAdapters.ModelToEntity
     {
         //private VacationMTEAdapter vacationAdapter = new VacationMTEAdapter();
 
-        public ICollection<IncludedItem> MapData(ICollection<string> collection, int p)
+        public ICollection<IncludedItem> MapData(ICollection<IncludedItemModel> collection)
         {
             ICollection<IncludedItem> items = new List<IncludedItem>();
-            foreach (string s in collection)
+            foreach (IncludedItemModel s in collection)
             {
-                IncludedItem i = new IncludedItem();
-
-                i.Item = s;
-                i.VacationId = p;
-                //i.Vacation = vacationAdapter.getVacation(p);
-
-                items.Add(i);
+                items.Add(MapData(s));
             }
             return items;
+        }
+
+        public IncludedItem MapData(IncludedItemModel s)
+        {
+            IncludedItem i = new IncludedItem();
+            i.Id = s.Id;
+            i.Item = s.Item;
+            i.VacationId = s.VacId;
+            return i;
         }
     }
 }

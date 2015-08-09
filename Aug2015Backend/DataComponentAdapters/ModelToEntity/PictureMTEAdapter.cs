@@ -11,7 +11,7 @@ namespace Aug2015Backend.DataComponentAdapters.ModelToEntity
     {
         //private VacationMTEAdapter vacationAdapter = new VacationMTEAdapter();
 
-        public Picture MapData(PictureModel pictureModel, int p)
+        public Picture MapData(PictureModel pictureModel)
         {
             Picture pic = new Picture();
 
@@ -22,18 +22,18 @@ namespace Aug2015Backend.DataComponentAdapters.ModelToEntity
                 pic.Url = pictureModel.Url;
                 pic.Description = pictureModel.Description;
                 //pic.Vacation = vacationAdapter.getVacation(p);
-                pic.VacationId = p;
+                pic.VacationId = pictureModel.VacId;
             }
             return pic;
         }
 
-        internal ICollection<Picture> MapData(ICollection<PictureModel> collection, int p)
+        internal ICollection<Picture> MapData(ICollection<PictureModel> collection)
         {
             ICollection<Picture> pictures = new List<Picture>();
 
             foreach (PictureModel pm in collection)
             {
-                pictures.Add(MapData(pm, p));
+                pictures.Add(MapData(pm));
             }
 
             return pictures;

@@ -17,16 +17,19 @@ namespace Aug2015Backend.DataComponentAdapters.ModelToEntity
 
             foreach (CommentModel m in collection)
             {
-                Comment c = new Comment();
-                c.Id = m.Id;
-                c.Text = m.Text;
-                c.Titel = m.Titel;
-                c.Url = m.Url;
-                //c.Vacation = vacationAdapter.getVacation(p);
-                c.VacationId = p;
-                comments.Add(c);
+                comments.Add(MapData(m,p));
             }
             return comments;
+        }
+
+        public Comment MapData(CommentModel m, int p) {         
+            Comment c = new Comment();
+            c.Id = m.Id;
+            c.Text = m.Text;
+            c.Titel = m.Titel;
+            c.Url = m.Url;
+            c.VacationId = p;
+            return c;
         }
     }
 }

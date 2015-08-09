@@ -36,7 +36,7 @@ namespace Aug2015Backend.Models
         public virtual PriceModel Cost { get; set; }
 
         [JsonProperty(PropertyName = "inbegrepen")]
-        public virtual ICollection<string> Included { get; set; }
+        public virtual ICollection<IncludedItemModel> Included { get; set; }
 
         [JsonProperty(PropertyName = "informatie")]
         public virtual ContactInformationModel ContactInformation { get; set; }
@@ -52,5 +52,8 @@ namespace Aug2015Backend.Models
 
         [JsonProperty(PropertyName = "cover_foto")]
         public virtual PictureModel Cover { get; set; }
+
+        [JsonProperty(PropertyName = "fiscaal_voordeel")]
+        public virtual bool Tax_Benefit { get; set; }
     }
 }

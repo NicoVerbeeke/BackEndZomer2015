@@ -30,20 +30,21 @@ namespace Aug2015Backend.DataComponentAdapters
 
             if (v != null)
             {
-                mappedVacation.Cover = pictureAdapter.MapData(v.Cover, v.Id);
+                mappedVacation.Cover = pictureAdapter.MapData(v.Cover);
                 mappedVacation.PromoText = v.PromoText;
                 mappedVacation.ContactInformation = contactInformationAdapter.MapData(v.ContactInformation, v.Id);
-                mappedVacation.Included = itemAdapter.MapData(v.Included, v.Id);
+                mappedVacation.Included = itemAdapter.MapData(v.Included);
                 mappedVacation.Cost = priceAdapter.MapData(v.Cost, v.Id);
                 mappedVacation.NumberOfParticipants = v.NumberOfParticipants;
                 mappedVacation.When = periodAdapter.MapData(v.When, v.Id);
                 mappedVacation.Who = groupAdapter.MapData(v.Who, v.Id);
-                mappedVacation.Location = locationAdapter.MapData(v.Location, v.Id);
+                mappedVacation.Location = locationAdapter.MapData(v.Location);
                 mappedVacation.Comment = commentAdapter.MapData(v.Comment, v.Id);
                 ICollection<AgeRange> ageRanges = arAdapter.MapData(v.Leeftijd, v.Id);
                 mappedVacation.AgeRange = ageRanges;
                 mappedVacation.Titel = v.Titel;
-                mappedVacation.Id = v.Id;            
+                mappedVacation.Id = v.Id;
+                mappedVacation.Tax_Benefit = v.Tax_Benefit;
             }          
 
             return mappedVacation;

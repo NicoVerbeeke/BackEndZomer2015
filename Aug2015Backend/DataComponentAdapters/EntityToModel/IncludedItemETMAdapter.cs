@@ -9,18 +9,26 @@ namespace Aug2015Backend.DataComponentAdapters.EntityToModel
 {
     public class IncludedItemETMAdapter
     {
-        public ICollection<String> MapData(ICollection<IncludedItem> items)
+        public ICollection<IncludedItemModel> MapData(ICollection<IncludedItem> items)
         {
-            ICollection<String> models = new List<string>();
+            ICollection<IncludedItemModel> models = new List<IncludedItemModel>();
             if (items != null)
             {
                 foreach (IncludedItem i in items)
                 {
-
-                    models.Add(i.Item);
+                    
+                    models.Add(MapData(i));
                 }
             }
             return models;
+        }
+
+        public IncludedItemModel MapData(IncludedItem i){
+            IncludedItemModel item = new IncludedItemModel();
+            item.Id = i.Id;
+            item.VacId = i.VacationId;
+            item.Item = i.Item;
+            return item;
         }
     }
 }

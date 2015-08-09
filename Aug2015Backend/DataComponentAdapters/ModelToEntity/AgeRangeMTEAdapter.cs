@@ -15,17 +15,21 @@ namespace Aug2015Backend.DataComponentAdapters
 
             foreach (AgeRangeModel range in ar)
             { 
-
-                AgeRange mappedAgeRange = new AgeRange();
-
-                mappedAgeRange.Id = range.Id;
-                mappedAgeRange.Min_leeftijd = range.Min_leeftijd;
-                mappedAgeRange.Max_leeftijd = range.Max_leeftijd;
-                mappedAgeRange.VacationId = vacId;
-
-                ageRanges.Add(mappedAgeRange);
+                ageRanges.Add(MapData(range, vacId));
             }
             return ageRanges;
+        }
+
+        public AgeRange MapData(AgeRangeModel arm, int vacId)
+        {
+            AgeRange mappedAgeRange = new AgeRange();
+
+            mappedAgeRange.Id = arm.Id;
+            mappedAgeRange.Min_leeftijd = arm.Min_leeftijd;
+            mappedAgeRange.Max_leeftijd = arm.Max_leeftijd;
+            mappedAgeRange.VacationId = vacId;
+
+            return mappedAgeRange;
         }
 
     }

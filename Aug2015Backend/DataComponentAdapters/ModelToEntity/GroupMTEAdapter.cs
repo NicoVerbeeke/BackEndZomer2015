@@ -17,18 +17,20 @@ namespace Aug2015Backend.DataComponentAdapters.ModelToEntity
 
             foreach (GroupModel gm in collection)
             {
-                Group g = new Group();
-
-                g.Id = gm.Id;
-                g.GroupNr = gm.GroupNr;
-                g.AgeRangeId = gm.AgeRange.Id;
-              //  g.Vacation = vacationAdapter.getVacation(p);
-                g.VacationId = p;
-
-                groups.Add(g);
+                groups.Add(MapData(gm, p));
             }
-
             return groups;
         }
+
+        public Group MapData(GroupModel gm, int p)
+        { 
+            Group g = new Group();
+            g.Id = gm.Id;
+            g.GroupNr = gm.GroupNr;
+            g.AgeRangeId = gm.AgeRange.Id;
+            g.VacationId = p;   
+            return g;
+        }
+
     }
 }

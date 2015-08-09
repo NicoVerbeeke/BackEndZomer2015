@@ -17,19 +17,23 @@ namespace Aug2015Backend.DataComponentAdapters.ModelToEntity
 
             foreach (PeriodModel pm in collection)
             {
-                Period period = new Period();
+                periods.Add( MapData(pm, p));
+            }
+
+            return periods;
+        }
+
+        public Period MapData(PeriodModel pm, int p)
+        {
+            Period period = new Period();
 
                 period.Id = pm.Id;
                 period.PeriodNr = pm.PeriodNr;
                 period.DateStart = pm.DateStart;
                 period.DateEnd = pm.DateEnd;
-                //period.Vacation = vacationAdapter.getVacation(p);
-                period.VacationId = p;
+                period.VacationId = p;          
 
-                periods.Add(period);
-            }
-
-            return periods;
+            return period;
         }
     }
 }

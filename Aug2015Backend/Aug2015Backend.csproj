@@ -323,6 +323,7 @@
     <Compile Include="Models\ModelHelpers\CommentModel.cs" />
     <Compile Include="Models\ModelHelpers\ContactInformationModel.cs" />
     <Compile Include="Models\ModelHelpers\GroupModel.cs" />
+    <Compile Include="Models\ModelHelpers\IncludedItemModel.cs" />
     <Compile Include="Models\ModelHelpers\LocationModel.cs" />
     <Compile Include="Models\ModelHelpers\PeriodModel.cs" />
     <Compile Include="Models\ModelHelpers\PictureModel.cs" />
