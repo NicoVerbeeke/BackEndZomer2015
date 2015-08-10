@@ -184,9 +184,11 @@ namespace Aug2015Backend.Controllers
                 _db.Entry(VacationToDelete.Cost).State = EntityState.Deleted;
                 _db.Entry(VacationToDelete.ContactInformation).State = EntityState.Deleted;
                 _db.Entry(VacationToDelete.Location).State = EntityState.Deleted;
+                _db.Entry(VacationToDelete.Cover).State = EntityState.Deleted;
                 _db.Vacations.Remove(VacationToDelete);
                 _db.SaveChanges();
                 response.StatusCode = HttpStatusCode.OK;
+
             }
             else
             {

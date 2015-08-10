@@ -4,163 +4,163 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Alias="Self" Namespace="Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
+    <Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="Model1StoreContainer">
-    <EntitySet Name="Vacations" EntityType="Model1.Store.Vacations" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="AgeRanges" EntityType="Model1.Store.AgeRanges" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Comments" EntityType="Model1.Store.Comments" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ContactInformations" EntityType="Model1.Store.ContactInformations" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Groups" EntityType="Model1.Store.Groups" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Locations" EntityType="Model1.Store.Locations" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Periods" EntityType="Model1.Store.Periods" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Pictures" EntityType="Model1.Store.Pictures" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Prices" EntityType="Model1.Store.Prices" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="IncludedItems" EntityType="Model1.Store.IncludedItems" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vacations" EntityType="Model1.Store.Vacations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AgeRanges" EntityType="Model1.Store.AgeRanges" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Comments" EntityType="Model1.Store.Comments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ContactInformations" EntityType="Model1.Store.ContactInformations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Groups" EntityType="Model1.Store.Groups" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Locations" EntityType="Model1.Store.Locations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Periods" EntityType="Model1.Store.Periods" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Pictures" EntityType="Model1.Store.Pictures" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Prices" EntityType="Model1.Store.Prices" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="IncludedItems" EntityType="Model1.Store.IncludedItems" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="VacationAgeRange" Association="Model1.Store.VacationAgeRange">
-      <End EntitySet="Vacations" Role="Vacation" />
-      <End EntitySet="AgeRanges" Role="AgeRange" />
+      <End Role="Vacation" EntitySet="Vacations" />
+      <End Role="AgeRange" EntitySet="AgeRanges" />
     </AssociationSet>
     <AssociationSet Name="VacationComment" Association="Model1.Store.VacationComment">
-      <End EntitySet="Vacations" Role="Vacation" />
-      <End EntitySet="Comments" Role="Comment" />
+      <End Role="Vacation" EntitySet="Vacations" />
+      <End Role="Comment" EntitySet="Comments" />
     </AssociationSet>
     <AssociationSet Name="VacationContactInformation" Association="Model1.Store.VacationContactInformation">
-      <End EntitySet="Vacations" Role="Vacation" />
-      <End EntitySet="ContactInformations" Role="ContactInformation" />
+      <End Role="Vacation" EntitySet="Vacations" />
+      <End Role="ContactInformation" EntitySet="ContactInformations" />
     </AssociationSet>
     <AssociationSet Name="GroupAgeRange" Association="Model1.Store.GroupAgeRange">
-      <End EntitySet="Groups" Role="Group" />
-      <End EntitySet="AgeRanges" Role="AgeRange" />
+      <End Role="Group" EntitySet="Groups" />
+      <End Role="AgeRange" EntitySet="AgeRanges" />
     </AssociationSet>
     <AssociationSet Name="VacationLocation" Association="Model1.Store.VacationLocation">
-      <End EntitySet="Vacations" Role="Vacation" />
-      <End EntitySet="Locations" Role="Location" />
+      <End Role="Vacation" EntitySet="Vacations" />
+      <End Role="Location" EntitySet="Locations" />
     </AssociationSet>
     <AssociationSet Name="VacationPeriod" Association="Model1.Store.VacationPeriod">
-      <End EntitySet="Vacations" Role="Vacation" />
-      <End EntitySet="Periods" Role="Period" />
+      <End Role="Vacation" EntitySet="Vacations" />
+      <End Role="Period" EntitySet="Periods" />
     </AssociationSet>
     <AssociationSet Name="VacationGroup" Association="Model1.Store.VacationGroup">
-      <End EntitySet="Vacations" Role="Vacation" />
-      <End EntitySet="Groups" Role="Group" />
+      <End Role="Vacation" EntitySet="Vacations" />
+      <End Role="Group" EntitySet="Groups" />
     </AssociationSet>
     <AssociationSet Name="VacationCoverPicture" Association="Model1.Store.VacationCoverPicture">
-      <End EntitySet="Vacations" Role="Vacation" />
-      <End EntitySet="Pictures" Role="PictureModel" />
+      <End Role="Vacation" EntitySet="Vacations" />
+      <End Role="PictureModel" EntitySet="Pictures" />
     </AssociationSet>
     <AssociationSet Name="VacationPrice" Association="Model1.Store.VacationPrice">
-      <End EntitySet="Vacations" Role="Vacation" />
-      <End EntitySet="Prices" Role="Price" />
+      <End Role="Vacation" EntitySet="Vacations" />
+      <End Role="Price" EntitySet="Prices" />
     </AssociationSet>
     <AssociationSet Name="VacationIncludedItem" Association="Model1.Store.VacationIncludedItem">
-      <End EntitySet="Vacations" Role="Vacation" />
-      <End EntitySet="IncludedItems" Role="IncludedItem" />
+      <End Role="Vacation" EntitySet="Vacations" />
+      <End Role="IncludedItem" EntitySet="IncludedItems" />
     </AssociationSet>
     <AssociationSet Name="VacationPicture" Association="Model1.Store.VacationPicture">
-      <End EntitySet="Vacations" Role="Vacation" />
-      <End EntitySet="Pictures" Role="Picture" />
+      <End Role="Vacation" EntitySet="Vacations" />
+      <End Role="Picture" EntitySet="Pictures" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Vacations">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-    <Property Name="Titel" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="NumberOfParticipants" Nullable="false" Type="int" />
-    <Property Name="PromoText" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="Tax_Benefit" Nullable="false" Type="bit" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Titel" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NumberOfParticipants" Type="int" Nullable="false" />
+    <Property Name="PromoText" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Tax_Benefit" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="AgeRanges">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-    <Property Name="Min_leeftijd" Nullable="false" Type="int" />
-    <Property Name="Max_leeftijd" Nullable="false" Type="int" />
-    <Property Name="VacationId" Nullable="false" Type="int" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Min_leeftijd" Type="int" Nullable="false" />
+    <Property Name="Max_leeftijd" Type="int" Nullable="false" />
+    <Property Name="VacationId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Comments">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-    <Property Name="Titel" Nullable="true" Type="nvarchar(max)" />
-    <Property Name="Text" Nullable="true" Type="nvarchar(max)" />
-    <Property Name="Url" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="VacationId" Nullable="false" Type="int" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Titel" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Text" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="VacationId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ContactInformations">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-    <Property Name="Tel" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="Email" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="Vacation_Id" Nullable="false" Type="int" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tel" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Vacation_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Groups">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-    <Property Name="GroupNr" Nullable="false" Type="int" />
-    <Property Name="AgeRangeId" Nullable="false" Type="int" />
-    <Property Name="VacationId" Nullable="false" Type="int" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupNr" Type="int" Nullable="false" />
+    <Property Name="AgeRangeId" Type="int" Nullable="true" />
+    <Property Name="VacationId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Locations">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-    <Property Name="VacationDomain" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="City" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="Vacation_Id" Nullable="false" Type="int" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VacationDomain" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Vacation_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Periods">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-    <Property Name="PeriodNr" Nullable="false" Type="int" />
-    <Property Name="DateStart" Nullable="false" Type="datetime" />
-    <Property Name="DateEnd" Nullable="false" Type="datetime" />
-    <Property Name="VacationId" Nullable="false" Type="int" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PeriodNr" Type="int" Nullable="false" />
+    <Property Name="DateStart" Type="datetime" Nullable="false" />
+    <Property Name="DateEnd" Type="datetime" Nullable="false" />
+    <Property Name="VacationId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Pictures">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-    <Property Name="Titel" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="Description" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="Url" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="VacationId" Nullable="true" Type="int" />
-    <Property Name="VacationCoverPicture_PictureModel_Id" Nullable="true" Type="int" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Titel" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="VacationId" Type="int" Nullable="true" />
+    <Property Name="VacationCoverPicture_PictureModel_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Prices">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-    <Property Name="BasePrice" Nullable="false" Type="float" />
-    <Property Name="SingleStarPrice" Nullable="false" Type="float" />
-    <Property Name="DoubleStarPrice" Nullable="false" Type="float" />
-    <Property Name="Vacation_Id" Nullable="false" Type="int" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BasePrice" Type="float" Nullable="false" />
+    <Property Name="SingleStarPrice" Type="float" Nullable="false" />
+    <Property Name="DoubleStarPrice" Type="float" Nullable="false" />
+    <Property Name="Vacation_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="IncludedItems">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-    <Property Name="Item" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="VacationId" Nullable="false" Type="int" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Item" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="VacationId" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="VacationAgeRange">
-    <End Type="Model1.Store.Vacations" Multiplicity="1" Role="Vacation">
+    <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Type="Model1.Store.AgeRanges" Multiplicity="*" Role="AgeRange" />
+    <End Role="AgeRange" Type="Model1.Store.AgeRanges" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Vacation">
         <PropertyRef Name="Id" />
@@ -171,8 +171,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="VacationComment">
-    <End Type="Model1.Store.Vacations" Multiplicity="1" Role="Vacation" />
-    <End Type="Model1.Store.Comments" Multiplicity="*" Role="Comment" />
+    <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Comment" Type="Model1.Store.Comments" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Vacation">
         <PropertyRef Name="Id" />
@@ -183,8 +185,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="VacationContactInformation">
-    <End Type="Model1.Store.Vacations" Multiplicity="1" Role="Vacation" />
-    <End Type="Model1.Store.ContactInformations" Multiplicity="*" Role="ContactInformation" />
+    <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="1" />
+    <End Role="ContactInformation" Type="Model1.Store.ContactInformations" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Vacation">
         <PropertyRef Name="Id" />
@@ -195,8 +197,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="GroupAgeRange">
-    <End Type="Model1.Store.Groups" Multiplicity="*" Role="Group" />
-    <End Type="Model1.Store.AgeRanges" Multiplicity="1" Role="AgeRange" />
+    <End Role="Group" Type="Model1.Store.Groups" Multiplicity="*" />
+    <End Role="AgeRange" Type="Model1.Store.AgeRanges" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="AgeRange">
         <PropertyRef Name="Id" />
@@ -207,8 +209,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="VacationLocation">
-    <End Type="Model1.Store.Vacations" Multiplicity="1" Role="Vacation" />
-    <End Type="Model1.Store.Locations" Multiplicity="*" Role="Location" />
+    <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="1" />
+    <End Role="Location" Type="Model1.Store.Locations" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Vacation">
         <PropertyRef Name="Id" />
@@ -219,8 +221,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="VacationPeriod">
-    <End Type="Model1.Store.Vacations" Multiplicity="1" Role="Vacation" />
-    <End Type="Model1.Store.Periods" Multiplicity="*" Role="Period" />
+    <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Period" Type="Model1.Store.Periods" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Vacation">
         <PropertyRef Name="Id" />
@@ -231,8 +235,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="VacationGroup">
-    <End Type="Model1.Store.Vacations" Multiplicity="1" Role="Vacation" />
-    <End Type="Model1.Store.Groups" Multiplicity="*" Role="Group" />
+    <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Group" Type="Model1.Store.Groups" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Vacation">
         <PropertyRef Name="Id" />
@@ -243,8 +249,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="VacationCoverPicture">
-    <End Type="Model1.Store.Vacations" Multiplicity="0..1" Role="Vacation" />
-    <End Type="Model1.Store.Pictures" Multiplicity="*" Role="PictureModel" />
+    <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="0..1" />
+    <End Role="PictureModel" Type="Model1.Store.Pictures" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Vacation">
         <PropertyRef Name="Id" />
@@ -255,10 +261,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="VacationPrice">
-    <End Type="Model1.Store.Vacations" Multiplicity="1" Role="Vacation">
+    <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Type="Model1.Store.Prices" Multiplicity="*" Role="Price" />
+    <End Role="Price" Type="Model1.Store.Prices" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Vacation">
         <PropertyRef Name="Id" />
@@ -269,8 +275,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="VacationIncludedItem">
-    <End Type="Model1.Store.Vacations" Multiplicity="1" Role="Vacation" />
-    <End Type="Model1.Store.IncludedItems" Multiplicity="*" Role="IncludedItem" />
+    <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="IncludedItem" Type="Model1.Store.IncludedItems" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Vacation">
         <PropertyRef Name="Id" />
@@ -281,8 +289,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="VacationPicture">
-    <End Type="Model1.Store.Vacations" Multiplicity="0..1" Role="Vacation" />
-    <End Type="Model1.Store.Pictures" Multiplicity="*" Role="Picture" />
+    <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Picture" Type="Model1.Store.Pictures" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Vacation">
         <PropertyRef Name="Id" />
@@ -442,15 +452,14 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="GroupNr" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AgeRange" Relationship="Model1.GroupAgeRange" FromRole="Group" ToRole="AgeRange" />
-          <Property Name="AgeRangeId" Type="Int32" Nullable="false" />
+          <Property Name="AgeRangeId" Type="Int32" Nullable="true" />
           <NavigationProperty Name="Vacation" Relationship="Model1.VacationGroup" FromRole="Group" ToRole="Vacation" />
           <Property Name="VacationId" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="GroupAgeRange">
           <End Type="Model1.Group" Role="Group" Multiplicity="*" >
           </End>
-          <End Type="Model1.AgeRange" Role="AgeRange" Multiplicity="1" >
-            <OnDelete Action="Cascade" />
+          <End Type="Model1.AgeRange" Role="AgeRange" Multiplicity="0..1" >
           </End>
           <ReferentialConstraint>
             <Principal Role="AgeRange">
@@ -525,7 +534,8 @@
           <Property Name="VacationId" Nullable="true" Type="Int32" />
         </EntityType>
         <Association Name="VacationCoverPicture">
-          <End Type="Model1.Vacation" Multiplicity="0..1" Role="Vacation" />
+          <End Type="Model1.Vacation" Multiplicity="0..1" Role="Vacation" >
+          </End>
           <End Type="Model1.Picture" Multiplicity="0..1" Role="PictureModel" />
         </Association>
         <EntityType Name="Price">
@@ -568,7 +578,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="VacationPicture">
-          <End Type="Model1.Vacation" Role="Vacation" Multiplicity="0..1" />
+          <End Type="Model1.Vacation" Role="Vacation" Multiplicity="0..1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Model1.Picture" Role="Picture" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vacation">
@@ -584,7 +596,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping CdmEntityContainer="Model1Container" StorageEntityContainer="Model1StoreContainer">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
     <EntitySetMapping Name="Vacations">
       <EntityTypeMapping TypeName="IsTypeOf(Model1.Vacation)">
         <MappingFragment StoreEntitySet="Vacations">

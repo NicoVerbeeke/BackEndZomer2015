@@ -16,7 +16,7 @@ namespace Aug2015Backend.Entities
     {
         public int Id { get; set; }
         public int GroupNr { get; set; }
-        public int AgeRangeId { get; set; }
+        public Nullable<int> AgeRangeId { get; set; }
         public int VacationId { get; set; }
     
         public virtual AgeRange AgeRange { get; set; }

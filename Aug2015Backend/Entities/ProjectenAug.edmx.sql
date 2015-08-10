@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/10/2015 17:07:07
+-- Date Created: 08/10/2015 17:26:13
 -- Generated from EDMX file: C:\Users\Nico\Documents\ProjectenAugustus2015\BackEndZomer2015\Aug2015Backend\Entities\ProjectenAug.edmx
 -- --------------------------------------------------
 
@@ -132,7 +132,7 @@ GO
 CREATE TABLE [dbo].[Groups] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [GroupNr] int  NOT NULL,
-    [AgeRangeId] int  NOT NULL,
+    [AgeRangeId] int  NULL,
     [VacationId] int  NOT NULL
 );
 GO
@@ -304,7 +304,7 @@ ADD CONSTRAINT [FK_GroupAgeRange]
     FOREIGN KEY ([AgeRangeId])
     REFERENCES [dbo].[AgeRanges]
         ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_GroupAgeRange'
@@ -409,7 +409,7 @@ ADD CONSTRAINT [FK_VacationPicture]
     FOREIGN KEY ([VacationId])
     REFERENCES [dbo].[Vacations]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_VacationPicture'
