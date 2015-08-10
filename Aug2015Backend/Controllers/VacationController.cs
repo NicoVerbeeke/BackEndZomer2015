@@ -51,7 +51,7 @@ namespace Aug2015Backend.Controllers
 
             var query = _db.Vacations.Where(b => b.Id == id).Select(b => b).FirstOrDefault();
             VacationModel vacationModel = _vacToModelAdapter.MapData(query);
-
+            
             if (vacationModel.Id == 0)
             {
                 
