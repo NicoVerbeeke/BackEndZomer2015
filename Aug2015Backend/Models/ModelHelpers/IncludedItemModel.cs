@@ -16,6 +16,5 @@ namespace Aug2015Backend.Models.ModelHelpers
 
         [JsonProperty(PropertyName = "basis")]
         public String Item { get; set; }
-
     }
 }

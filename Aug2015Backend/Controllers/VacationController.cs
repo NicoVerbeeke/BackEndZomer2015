@@ -6,6 +6,8 @@ using Aug2015Backend.Models;
 using Aug2015Backend.Models.ModelHelpers;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -26,7 +28,7 @@ namespace Aug2015Backend.Controllers
             _db = new DataContext();
         }
 
-        // api/vacation
+        // api/vacation -> GET Verb
         // retrieve all vacations
         public IEnumerable<VacationModel> GetAllVacations()
         {
@@ -41,7 +43,7 @@ namespace Aug2015Backend.Controllers
             return vacationModels;
         }
 
-        // api/vacation/{id}
+        // api/vacation/{id} -> GET Verb
         // retrieve a single vacation with the matching Id
         public HttpResponseMessage GetVacation(int id)
         {
@@ -62,6 +64,8 @@ namespace Aug2015Backend.Controllers
             return result;            
         }
 
+        // api/vacation -> PUT Verb
+        // update a single vacation, the id is fetched from the model that needs to be send in the body of the request
         public int PutVacation(VacationModel vacModel)
         {
             var original = _db.Vacations.Find(vacModel.Id);
@@ -146,7 +150,7 @@ namespace Aug2015Backend.Controllers
 
 
         
-        // api/vacation
+        // api/vacation -> POST Verb
         // add a vacation to the list
         public void PostVacation(VacationModel vacModel)
         {
@@ -154,6 +158,41 @@ namespace Aug2015Backend.Controllers
 
             _db.Vacations.Add(vac);
             _db.SaveChanges();                       
+        }
+
+
+        // api/vacation/{id} -> DELETE Verb
+        // deletes the vacation with the id supplied in the url
+        public HttpResponseMessage DeleteVacation(int id)
+        {
+            HttpResponseMessage response = new HttpResponseMessage();          
+            var VacationToDelete = _db.Vacations.Where(v => v.Id == id).SingleOrDefault();
+
+      
+            if (VacationToDelete != null)
+            {
+                /*foreach (Group g in VacationToDelete.Who)
+                {
+                    _db.Who.Remove(g);
+                }
+
+                foreach (AgeRange ar in VacationToDelete.AgeRange)
+                {
+                    _db.AgeRanges.Remove(ar);
+                }*/
+
+                _db.Entry(VacationToDelete.Cost).State = EntityState.Deleted;
+                _db.Entry(VacationToDelete.ContactInformation).State = EntityState.Deleted;
+                _db.Entry(VacationToDelete.Location).State = EntityState.Deleted;
+                _db.Vacations.Remove(VacationToDelete);
+                _db.SaveChanges();
+                response.StatusCode = HttpStatusCode.OK;
+            }
+            else
+            {
+                response.StatusCode = HttpStatusCode.NotFound;
+            }
+            return response;
         }
     }
 }

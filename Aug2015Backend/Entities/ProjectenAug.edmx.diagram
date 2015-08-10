@@ -28,14 +28,7 @@
         <EntityTypeShape EntityType="Model1.IncludedItem" Width="1.5" PointX="2.625" PointY="1.125" />
         <AssociationConnector Association="Model1.VacationIncludedItem" />
         <AssociationConnector Association="Model1.VacationPicture" />
-        <EntityTypeShape EntityType="Model1.AspNetRoles" Width="1.5" PointX="0.75" PointY="10.5" />
-        <EntityTypeShape EntityType="Model1.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="9" />
-        <EntityTypeShape EntityType="Model1.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="11.75" />
-        <EntityTypeShape EntityType="Model1.AspNetUsers" Width="1.5" PointX="3" PointY="9.375" />
-        <AssociationConnector Association="Model1.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="Model1.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="Model1.AspNetUserRoles" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
