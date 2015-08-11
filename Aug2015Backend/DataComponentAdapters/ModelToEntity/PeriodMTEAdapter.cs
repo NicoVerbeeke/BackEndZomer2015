@@ -7,9 +7,9 @@ using System.Text;
 
 namespace Aug2015Backend.DataComponentAdapters.ModelToEntity
 {
-    class PeriodMTEAdapter
+    public class PeriodMTEAdapter
     {
-        //private VacationMTEAdapter vacationAdapter = new VacationMTEAdapter();
+        
 
         public ICollection<Period> MapData(ICollection<PeriodModel> collection, int p)
         {

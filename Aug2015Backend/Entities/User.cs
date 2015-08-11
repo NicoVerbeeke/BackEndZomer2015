@@ -23,7 +23,7 @@ namespace Aug2015Backend.Entities
         public string Bus { get; set; }
         public string City { get; set; }
         public string PostalCode { get; set; }
-    
-        public virtual AspNetUsers AuthUser { get; set; }
+        public string AuthUserId { get; set; }
+        public string PhoneNumber { get; set; }
     }
 }

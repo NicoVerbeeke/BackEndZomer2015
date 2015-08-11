@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/11/2015 12:31:23
+-- Date Created: 08/11/2015 22:34:42
 -- Generated from EDMX file: C:\Users\Nico\Documents\ProjectenAugustus2015\BackEndZomer2015\Aug2015Backend\Entities\ProjectenAug.edmx
 -- --------------------------------------------------
 
@@ -84,6 +84,9 @@ IF OBJECT_ID(N'[dbo].[Prices]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[IncludedItems]', 'U') IS NOT NULL
     DROP TABLE [dbo].[IncludedItems];
+GO
+IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Users];
 GO
 
 -- --------------------------------------------------
@@ -185,6 +188,30 @@ CREATE TABLE [dbo].[IncludedItems] (
 );
 GO
 
+-- Creating table 'Users'
+CREATE TABLE [dbo].[Users] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [RNR] nvarchar(max)  NOT NULL,
+    [FirstName] nvarchar(max)  NOT NULL,
+    [LastName] nvarchar(max)  NOT NULL,
+    [Street] nvarchar(max)  NOT NULL,
+    [HouseNr] nvarchar(max)  NOT NULL,
+    [Bus] nvarchar(max)  NOT NULL,
+    [City] nvarchar(max)  NOT NULL,
+    [PostalCode] nvarchar(max)  NOT NULL,
+    [AuthUserId] nvarchar(max)  NOT NULL,
+    [PhoneNumber] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'Subscriptions'
+CREATE TABLE [dbo].[Subscriptions] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [VacationId] int  NOT NULL,
+    [UserId] int  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -246,6 +273,18 @@ GO
 -- Creating primary key on [Id] in table 'IncludedItems'
 ALTER TABLE [dbo].[IncludedItems]
 ADD CONSTRAINT [PK_IncludedItems]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Users'
+ALTER TABLE [dbo].[Users]
+ADD CONSTRAINT [PK_Users]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Subscriptions'
+ALTER TABLE [dbo].[Subscriptions]
+ADD CONSTRAINT [PK_Subscriptions]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -416,6 +455,36 @@ GO
 CREATE INDEX [IX_FK_VacationPicture]
 ON [dbo].[Pictures]
     ([VacationId]);
+GO
+
+-- Creating foreign key on [VacationId] in table 'Subscriptions'
+ALTER TABLE [dbo].[Subscriptions]
+ADD CONSTRAINT [FK_VacationSubscription]
+    FOREIGN KEY ([VacationId])
+    REFERENCES [dbo].[Vacations]
+        ([Id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_VacationSubscription'
+CREATE INDEX [IX_FK_VacationSubscription]
+ON [dbo].[Subscriptions]
+    ([VacationId]);
+GO
+
+-- Creating foreign key on [UserId] in table 'Subscriptions'
+ALTER TABLE [dbo].[Subscriptions]
+ADD CONSTRAINT [FK_UserSubscription]
+    FOREIGN KEY ([UserId])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserSubscription'
+CREATE INDEX [IX_FK_UserSubscription]
+ON [dbo].[Subscriptions]
+    ([UserId]);
 GO
 
 -- --------------------------------------------------

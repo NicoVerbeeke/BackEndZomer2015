@@ -1,5 +1,6 @@
 ﻿using Aug2015Backend.DataBaseContext;
 using Aug2015Backend.Models;
+using Aug2015Backend.Models.ModelHelpers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -22,14 +23,14 @@ namespace Aug2015Backend
             _userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(_ctx));
         }
 
-        public async Task<IdentityResult> RegisterUser(UserModel userModel)
+        public async Task<IdentityResult> RegisterUser(RegistrationModel registrationModel)
         {
             IdentityUser user = new IdentityUser
             {
-                UserName = userModel.UserName
+                UserName = registrationModel.UserName
             };
 
-            var result = await _userManager.CreateAsync(user, userModel.Password);
+            var result = await _userManager.CreateAsync(user, registrationModel.Password);
 
             return result;
         }

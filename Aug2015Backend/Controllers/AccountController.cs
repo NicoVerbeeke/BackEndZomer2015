@@ -10,6 +10,10 @@ using System.Web.Http.ModelBinding;
 using Microsoft.Owin.Security;
 using Aug2015Backend.Models;
 using Microsoft.AspNet.Identity;
+using Aug2015Backend.DataBaseContext;
+using Aug2015Backend.DataComponentAdapters.ModelToEntity;
+using Aug2015Backend.DataComponentAdapters;
+using Aug2015Backend.DataComponentAdapters.EntityToModel;
 
 namespace Aug2015Backend.Controllers
 {
@@ -18,10 +22,12 @@ namespace Aug2015Backend.Controllers
     public class AccountController : ApiController
     {
         private AuthRepository _repo = null;
+        private DataContext _db = null;
 
         public AccountController()
         {
             _repo = new AuthRepository();
+            _db = new DataContext();
         }
 
         // POST api/Account/Register
@@ -35,9 +41,12 @@ namespace Aug2015Backend.Controllers
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await _repo.RegisterUser(userModel);
+            IdentityResult result = await _repo.RegisterUser(new AuthenticationModelAdapter().CreateRegistrationModel(userModel));
 
             IHttpActionResult errorResult = GetErrorResult(result);
+
+             _db.Users.Add(await new UserMTEAdapter().MapData(userModel));
+            _db.SaveChanges();
 
             if (errorResult != null)
             {
@@ -55,6 +64,17 @@ namespace Aug2015Backend.Controllers
             }
 
             base.Dispose(disposing);
+        }
+
+        
+        // api/account/user
+        
+        [System.Web.Http.AcceptVerbs("GET")]
+        [AllowAnonymous]
+        public UserModel getAccount(int id)
+        {
+            var userToMap = _db.Users.Find(id);
+            return new UserETMAdapter().MapData(userToMap);
         }
 
         private IHttpActionResult GetErrorResult(IdentityResult result)

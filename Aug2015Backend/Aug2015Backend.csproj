@@ -196,9 +196,11 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="AuthRepository.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\SubscriptionController.cs" />
     <Compile Include="Controllers\VacationController.cs" />
     <Compile Include="DataBaseContext\AuthContext.cs" />
     <Compile Include="DataBaseContext\DataContext.cs" />
+    <Compile Include="DataComponentAdapters\AuthenticationModelAdapter.cs" />
     <Compile Include="DataComponentAdapters\EntityToModel\AgeRangeETMAdapter.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -226,6 +228,8 @@
     <Compile Include="DataComponentAdapters\EntityToModel\PriceETMAdapter.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DataComponentAdapters\EntityToModel\SubscriptionETMAdapter.cs" />
+    <Compile Include="DataComponentAdapters\EntityToModel\UserETMAdapter.cs" />
     <Compile Include="DataComponentAdapters\EntityToModel\VacationETMAdapter.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -256,22 +260,12 @@
     <Compile Include="DataComponentAdapters\ModelToEntity\PriceMTEAdapter.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DataComponentAdapters\ModelToEntity\SubscriptionETMAdapter.cs" />
+    <Compile Include="DataComponentAdapters\ModelToEntity\UserMTEAdapter.cs" />
     <Compile Include="DataComponentAdapters\ModelToEntity\VacationMTEAdapter.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Entities\AgeRange.cs">
-      <DependentUpon>Model2.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\AspNetRoles.cs">
-      <DependentUpon>Model2.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\AspNetUserClaims.cs">
-      <DependentUpon>Model2.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\AspNetUserLogins.cs">
-      <DependentUpon>Model2.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\AspNetUsers.cs">
       <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Comment.cs">
@@ -313,6 +307,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProjectenAug.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Subscription.cs">
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\User.cs">
       <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
@@ -331,6 +328,8 @@
     <Compile Include="Models\ModelHelpers\PeriodModel.cs" />
     <Compile Include="Models\ModelHelpers\PictureModel.cs" />
     <Compile Include="Models\ModelHelpers\PriceModel.cs" />
+    <Compile Include="Models\ModelHelpers\RegistrationModel.cs" />
+    <Compile Include="Models\ModelHelpers\SubscriptionModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\VacationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

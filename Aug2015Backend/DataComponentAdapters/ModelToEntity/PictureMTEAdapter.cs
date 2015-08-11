@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Aug2015Backend.DataComponentAdapters.ModelToEntity
 {
-    class PictureMTEAdapter
+    public class PictureMTEAdapter
     {
         //private VacationMTEAdapter vacationAdapter = new VacationMTEAdapter();
 
@@ -27,7 +27,7 @@ namespace Aug2015Backend.DataComponentAdapters.ModelToEntity
             return pic;
         }
 
-        internal ICollection<Picture> MapData(ICollection<PictureModel> collection)
+        public ICollection<Picture> MapData(ICollection<PictureModel> collection)
         {
             ICollection<Picture> pictures = new List<Picture>();
 

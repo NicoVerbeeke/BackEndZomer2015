@@ -7,6 +7,7 @@ using System.Web;
 
 namespace Aug2015Backend.Models
 {
+    // this Model is used to fill in the OAuth provided User table AND the self created User table.
     public class UserModel : IdentityUser
     {
         [Required]
@@ -57,7 +58,13 @@ namespace Aug2015Backend.Models
         public String PostalCode { get; set; }
 
         [Required]
-        [Display(Name = "e-mail")]
-        public String Email { get; set; }
+        [Display(Name = "Telefoonnummer")]
+        public String PhoneNumber { get; set; }
+
+        public String AuthUserId { get; set; }
+
+        public int Id { get; set; }
+
+       
     }
 }

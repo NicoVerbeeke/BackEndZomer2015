@@ -35,10 +35,7 @@ namespace Aug2015Backend.Entities
         public virtual DbSet<Picture> Pictures { get; set; }
         public virtual DbSet<Price> Prices { get; set; }
         public virtual DbSet<IncludedItem> IncludedItems { get; set; }
-        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
-        public virtual DbSet<User> UserSet { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Subscription> Subscriptions { get; set; }
     }
 }

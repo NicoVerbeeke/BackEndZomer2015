@@ -12,16 +12,13 @@ namespace Aug2015Backend.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetRoles
+    public partial class Subscription
     {
-        public AspNetRoles()
-        {
-            this.AspNetUsers = new HashSet<AspNetUsers>();
-        }
+        public int Id { get; set; }
+        public int VacationId { get; set; }
+        public int UserId { get; set; }
     
-        public string Id { get; set; }
-        public string Name { get; set; }
-    
-        public virtual ICollection<AspNetUsers> AspNetUsers { get; set; }
+        public virtual Vacation Vacation { get; set; }
+        public virtual User User { get; set; }
     }
 }

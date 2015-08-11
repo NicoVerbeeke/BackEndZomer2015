@@ -4,433 +4,367 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="AgeRanges">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Min_leeftijd" Type="int" Nullable="false" />
-          <Property Name="Max_leeftijd" Type="int" Nullable="false" />
-          <Property Name="VacationId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="AspNetRoles">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
-        </EntityType>
-        <EntityType Name="AspNetUserClaims">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ClaimType" Type="nvarchar(max)" />
-          <Property Name="ClaimValue" Type="nvarchar(max)" />
-        </EntityType>
-        <EntityType Name="AspNetUserLogins">
-          <Key>
-            <PropertyRef Name="LoginProvider" />
-            <PropertyRef Name="ProviderKey" />
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-        </EntityType>
-        <EntityType Name="AspNetUserRoles">
-          <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
-        </EntityType>
-        <EntityType Name="AspNetUsers">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="256" />
-          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
-          <Property Name="PasswordHash" Type="nvarchar(max)" />
-          <Property Name="SecurityStamp" Type="nvarchar(max)" />
-          <Property Name="PhoneNumber" Type="nvarchar(max)" />
-          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
-          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
-          <Property Name="LockoutEndDateUtc" Type="datetime" />
-          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
-          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Comments">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Titel" Type="nvarchar(max)" />
-          <Property Name="Text" Type="nvarchar(max)" />
-          <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="VacationId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ContactInformations">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Tel" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Vacation_Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Groups">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="GroupNr" Type="int" Nullable="false" />
-          <Property Name="AgeRangeId" Type="int" />
-          <Property Name="VacationId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="IncludedItems">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Item" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="VacationId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Locations">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="VacationDomain" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="City" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Vacation_Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Periods">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PeriodNr" Type="int" Nullable="false" />
-          <Property Name="DateStart" Type="datetime" Nullable="false" />
-          <Property Name="DateEnd" Type="datetime" Nullable="false" />
-          <Property Name="VacationId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Pictures">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Titel" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="VacationId" Type="int" />
-          <Property Name="VacationCoverPicture_PictureModel_Id" Type="int" />
-        </EntityType>
-        <EntityType Name="Prices">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BasePrice" Type="float" Nullable="false" />
-          <Property Name="SingleStarPrice" Type="float" Nullable="false" />
-          <Property Name="DoubleStarPrice" Type="float" Nullable="false" />
-          <Property Name="Vacation_Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Vacations">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Titel" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="NumberOfParticipants" Type="int" Nullable="false" />
-          <Property Name="PromoText" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Tax_Benefit" Type="bit" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserClaims">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserLogins">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetRoles">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserRoles">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserRoles">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GroupAgeRange">
-          <End Role="AgeRanges" Type="Self.AgeRanges" Multiplicity="0..1" />
-          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AgeRanges">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Groups">
-              <PropertyRef Name="AgeRangeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VacationAgeRange">
-          <End Role="Vacations" Type="Self.Vacations" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AgeRanges" Type="Self.AgeRanges" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vacations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AgeRanges">
-              <PropertyRef Name="VacationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VacationComment">
-          <End Role="Vacations" Type="Self.Vacations" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vacations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Comments">
-              <PropertyRef Name="VacationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VacationContactInformation">
-          <End Role="Vacations" Type="Self.Vacations" Multiplicity="1" />
-          <End Role="ContactInformations" Type="Self.ContactInformations" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vacations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ContactInformations">
-              <PropertyRef Name="Vacation_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VacationCoverPicture">
-          <End Role="Vacations" Type="Self.Vacations" Multiplicity="0..1" />
-          <End Role="Pictures" Type="Self.Pictures" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vacations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Pictures">
-              <PropertyRef Name="VacationCoverPicture_PictureModel_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VacationGroup">
-          <End Role="Vacations" Type="Self.Vacations" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vacations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Groups">
-              <PropertyRef Name="VacationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VacationIncludedItem">
-          <End Role="Vacations" Type="Self.Vacations" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="IncludedItems" Type="Self.IncludedItems" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vacations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="IncludedItems">
-              <PropertyRef Name="VacationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VacationLocation">
-          <End Role="Vacations" Type="Self.Vacations" Multiplicity="1" />
-          <End Role="Locations" Type="Self.Locations" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vacations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Locations">
-              <PropertyRef Name="Vacation_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VacationPeriod">
-          <End Role="Vacations" Type="Self.Vacations" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Periods" Type="Self.Periods" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vacations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Periods">
-              <PropertyRef Name="VacationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VacationPicture">
-          <End Role="Vacations" Type="Self.Vacations" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Pictures" Type="Self.Pictures" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vacations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Pictures">
-              <PropertyRef Name="VacationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VacationPrice">
-          <End Role="Vacations" Type="Self.Vacations" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Prices" Type="Self.Prices" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vacations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Prices">
-              <PropertyRef Name="Vacation_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="Model1StoreContainer">
-          <EntitySet Name="AgeRanges" EntityType="Self.AgeRanges" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ContactInformations" EntityType="Self.ContactInformations" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="IncludedItems" EntityType="Self.IncludedItems" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Periods" EntityType="Self.Periods" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Pictures" EntityType="Self.Pictures" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Prices" EntityType="Self.Prices" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Vacations" EntityType="Self.Vacations" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GroupAgeRange" Association="Self.FK_GroupAgeRange">
-            <End Role="AgeRanges" EntitySet="AgeRanges" />
-            <End Role="Groups" EntitySet="Groups" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VacationAgeRange" Association="Self.FK_VacationAgeRange">
-            <End Role="Vacations" EntitySet="Vacations" />
-            <End Role="AgeRanges" EntitySet="AgeRanges" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VacationComment" Association="Self.FK_VacationComment">
-            <End Role="Vacations" EntitySet="Vacations" />
-            <End Role="Comments" EntitySet="Comments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VacationContactInformation" Association="Self.FK_VacationContactInformation">
-            <End Role="Vacations" EntitySet="Vacations" />
-            <End Role="ContactInformations" EntitySet="ContactInformations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VacationCoverPicture" Association="Self.FK_VacationCoverPicture">
-            <End Role="Vacations" EntitySet="Vacations" />
-            <End Role="Pictures" EntitySet="Pictures" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VacationGroup" Association="Self.FK_VacationGroup">
-            <End Role="Vacations" EntitySet="Vacations" />
-            <End Role="Groups" EntitySet="Groups" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VacationIncludedItem" Association="Self.FK_VacationIncludedItem">
-            <End Role="Vacations" EntitySet="Vacations" />
-            <End Role="IncludedItems" EntitySet="IncludedItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VacationLocation" Association="Self.FK_VacationLocation">
-            <End Role="Vacations" EntitySet="Vacations" />
-            <End Role="Locations" EntitySet="Locations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VacationPeriod" Association="Self.FK_VacationPeriod">
-            <End Role="Vacations" EntitySet="Vacations" />
-            <End Role="Periods" EntitySet="Periods" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VacationPicture" Association="Self.FK_VacationPicture">
-            <End Role="Vacations" EntitySet="Vacations" />
-            <End Role="Pictures" EntitySet="Pictures" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VacationPrice" Association="Self.FK_VacationPrice">
-            <End Role="Vacations" EntitySet="Vacations" />
-            <End Role="Prices" EntitySet="Prices" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="Vacations" EntityType="Model1.Store.Vacations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AgeRanges" EntityType="Model1.Store.AgeRanges" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Comments" EntityType="Model1.Store.Comments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ContactInformations" EntityType="Model1.Store.ContactInformations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Groups" EntityType="Model1.Store.Groups" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Locations" EntityType="Model1.Store.Locations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Periods" EntityType="Model1.Store.Periods" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Pictures" EntityType="Model1.Store.Pictures" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Prices" EntityType="Model1.Store.Prices" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="IncludedItems" EntityType="Model1.Store.IncludedItems" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="Model1.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Subscriptions" EntityType="Model1.Store.Subscriptions" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="VacationAgeRange" Association="Model1.Store.VacationAgeRange">
+      <End Role="Vacation" EntitySet="Vacations" />
+      <End Role="AgeRange" EntitySet="AgeRanges" />
+    </AssociationSet>
+    <AssociationSet Name="VacationComment" Association="Model1.Store.VacationComment">
+      <End Role="Vacation" EntitySet="Vacations" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="VacationContactInformation" Association="Model1.Store.VacationContactInformation">
+      <End Role="Vacation" EntitySet="Vacations" />
+      <End Role="ContactInformation" EntitySet="ContactInformations" />
+    </AssociationSet>
+    <AssociationSet Name="GroupAgeRange" Association="Model1.Store.GroupAgeRange">
+      <End Role="Group" EntitySet="Groups" />
+      <End Role="AgeRange" EntitySet="AgeRanges" />
+    </AssociationSet>
+    <AssociationSet Name="VacationLocation" Association="Model1.Store.VacationLocation">
+      <End Role="Vacation" EntitySet="Vacations" />
+      <End Role="Location" EntitySet="Locations" />
+    </AssociationSet>
+    <AssociationSet Name="VacationPeriod" Association="Model1.Store.VacationPeriod">
+      <End Role="Vacation" EntitySet="Vacations" />
+      <End Role="Period" EntitySet="Periods" />
+    </AssociationSet>
+    <AssociationSet Name="VacationGroup" Association="Model1.Store.VacationGroup">
+      <End Role="Vacation" EntitySet="Vacations" />
+      <End Role="Group" EntitySet="Groups" />
+    </AssociationSet>
+    <AssociationSet Name="VacationCoverPicture" Association="Model1.Store.VacationCoverPicture">
+      <End Role="Vacation" EntitySet="Vacations" />
+      <End Role="PictureModel" EntitySet="Pictures" />
+    </AssociationSet>
+    <AssociationSet Name="VacationPrice" Association="Model1.Store.VacationPrice">
+      <End Role="Vacation" EntitySet="Vacations" />
+      <End Role="Price" EntitySet="Prices" />
+    </AssociationSet>
+    <AssociationSet Name="VacationIncludedItem" Association="Model1.Store.VacationIncludedItem">
+      <End Role="Vacation" EntitySet="Vacations" />
+      <End Role="IncludedItem" EntitySet="IncludedItems" />
+    </AssociationSet>
+    <AssociationSet Name="VacationPicture" Association="Model1.Store.VacationPicture">
+      <End Role="Vacation" EntitySet="Vacations" />
+      <End Role="Picture" EntitySet="Pictures" />
+    </AssociationSet>
+    <AssociationSet Name="VacationSubscription" Association="Model1.Store.VacationSubscription">
+      <End Role="Vacation" EntitySet="Vacations" />
+      <End Role="Subscription" EntitySet="Subscriptions" />
+    </AssociationSet>
+    <AssociationSet Name="UserSubscription" Association="Model1.Store.UserSubscription">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Subscription" EntitySet="Subscriptions" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Vacations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Titel" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NumberOfParticipants" Type="int" Nullable="false" />
+    <Property Name="PromoText" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Tax_Benefit" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AgeRanges">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Min_leeftijd" Type="int" Nullable="false" />
+    <Property Name="Max_leeftijd" Type="int" Nullable="false" />
+    <Property Name="VacationId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Titel" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Text" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="VacationId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContactInformations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tel" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Vacation_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Groups">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupNr" Type="int" Nullable="false" />
+    <Property Name="AgeRangeId" Type="int" Nullable="true" />
+    <Property Name="VacationId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Locations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VacationDomain" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Vacation_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Periods">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PeriodNr" Type="int" Nullable="false" />
+    <Property Name="DateStart" Type="datetime" Nullable="false" />
+    <Property Name="DateEnd" Type="datetime" Nullable="false" />
+    <Property Name="VacationId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pictures">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Titel" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="VacationId" Type="int" Nullable="true" />
+    <Property Name="VacationCoverPicture_PictureModel_Id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Prices">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BasePrice" Type="float" Nullable="false" />
+    <Property Name="SingleStarPrice" Type="float" Nullable="false" />
+    <Property Name="DoubleStarPrice" Type="float" Nullable="false" />
+    <Property Name="Vacation_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IncludedItems">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Item" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="VacationId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RNR" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Street" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="HouseNr" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Bus" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PostalCode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AuthUserId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subscriptions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VacationId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="VacationAgeRange">
+    <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AgeRange" Type="Model1.Store.AgeRanges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vacation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AgeRange">
+        <PropertyRef Name="VacationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VacationComment">
+    <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Comment" Type="Model1.Store.Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vacation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="VacationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VacationContactInformation">
+    <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="1" />
+    <End Role="ContactInformation" Type="Model1.Store.ContactInformations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vacation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContactInformation">
+        <PropertyRef Name="Vacation_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GroupAgeRange">
+    <End Role="Group" Type="Model1.Store.Groups" Multiplicity="*" />
+    <End Role="AgeRange" Type="Model1.Store.AgeRanges" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="AgeRange">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Group">
+        <PropertyRef Name="AgeRangeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VacationLocation">
+    <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="1" />
+    <End Role="Location" Type="Model1.Store.Locations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vacation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="Vacation_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VacationPeriod">
+    <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Period" Type="Model1.Store.Periods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vacation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Period">
+        <PropertyRef Name="VacationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VacationGroup">
+    <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Group" Type="Model1.Store.Groups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vacation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Group">
+        <PropertyRef Name="VacationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VacationCoverPicture">
+    <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="0..1" />
+    <End Role="PictureModel" Type="Model1.Store.Pictures" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vacation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PictureModel">
+        <PropertyRef Name="VacationCoverPicture_PictureModel_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VacationPrice">
+    <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Price" Type="Model1.Store.Prices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vacation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Price">
+        <PropertyRef Name="Vacation_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VacationIncludedItem">
+    <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="IncludedItem" Type="Model1.Store.IncludedItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vacation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="IncludedItem">
+        <PropertyRef Name="VacationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VacationPicture">
+    <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Picture" Type="Model1.Store.Pictures" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vacation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Picture">
+        <PropertyRef Name="VacationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VacationSubscription">
+    <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Subscription" Type="Model1.Store.Subscriptions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vacation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Subscription">
+        <PropertyRef Name="VacationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserSubscription">
+    <End Role="User" Type="Model1.Store.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Subscription" Type="Model1.Store.Subscriptions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Subscription">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -489,28 +423,17 @@
             <End Role="Vacation" EntitySet="Vacations" />
             <End Role="Picture" EntitySet="Pictures" />
           </AssociationSet>
-          <EntitySet Name="AspNetRoles" EntityType="Model1.AspNetRoles" />
-          <EntitySet Name="AspNetUserClaims" EntityType="Model1.AspNetUserClaims" />
-          <EntitySet Name="AspNetUserLogins" EntityType="Model1.AspNetUserLogins" />
-          <EntitySet Name="AspNetUsers" EntityType="Model1.AspNetUsers" />
-          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Model1.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          <EntitySet Name="Users" EntityType="Model1.User" />
+          <EntitySet Name="Subscriptions" EntityType="Model1.Subscription" />
+          <AssociationSet Name="VacationSubscription" Association="Model1.VacationSubscription">
+            <End Role="Vacation" EntitySet="Vacations" />
+            <End Role="Subscription" EntitySet="Subscriptions" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Model1.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          <AssociationSet Name="UserSubscription" Association="Model1.UserSubscription">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Subscription" EntitySet="Subscriptions" />
           </AssociationSet>
-          <AssociationSet Name="AspNetUserRoles" Association="Model1.AspNetUserRoles">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-          </AssociationSet>
-          <EntitySet Name="UserSet" EntityType="Model1.User" />
-          <AssociationSet Name="UserAspNetUsers" Association="Model1.UserAspNetUsers">
-            <End Role="User" EntitySet="UserSet" />
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-          </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Vacation">
           <Key>
             <PropertyRef Name="Id" />
@@ -740,111 +663,61 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="AspNetRoles">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Model1.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
-        </EntityType>
-        <EntityType Name="AspNetUserClaims">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Model1.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
-        </EntityType>
-        <EntityType Name="AspNetUserLogins">
-          <Key>
-            <PropertyRef Name="LoginProvider" />
-            <PropertyRef Name="ProviderKey" />
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Model1.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
-        </EntityType>
-        <EntityType Name="AspNetUsers">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
-          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
-          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
-          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
-          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
-          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUserClaims" Relationship="Model1.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
-          <NavigationProperty Name="AspNetUserLogins" Relationship="Model1.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
-          <NavigationProperty Name="AspNetRoles" Relationship="Model1.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
-          <NavigationProperty Name="User" Relationship="Model1.UserAspNetUsers" FromRole="AspNetUsers" ToRole="User" />
-        </EntityType>
-        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-          <End Type="Model1.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="Model1.AspNetUserClaims" Role="AspNetUserClaims" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserClaims">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-          <End Type="Model1.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="Model1.AspNetUserLogins" Role="AspNetUserLogins" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserLogins">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="AspNetUserRoles">
-          <End Type="Model1.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
-          <End Type="Model1.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
-        </Association>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="AuthUser" Relationship="Model1.UserAspNetUsers" FromRole="User" ToRole="AspNetUsers" />
-          <Property Name="RNR" Type="String" Nullable="false" />
-          <Property Name="FirstName" Type="String" Nullable="false" />
-          <Property Name="LastName" Type="String" Nullable="false" />
-          <Property Name="Street" Type="String" Nullable="false" />
-          <Property Name="HouseNr" Type="String" Nullable="false" />
-          <Property Name="Bus" Type="String" Nullable="false" />
-          <Property Name="City" Type="String" Nullable="false" />
-          <Property Name="PostalCode" Type="String" Nullable="false" />
+          <Property Name="RNR" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Street" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="HouseNr" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Bus" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="AuthUserId" Type="String" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" />
         </EntityType>
-        <Association Name="UserAspNetUsers">
-          <End Type="Model1.User" Role="User" Multiplicity="0..1" >
-          </End>
-          <End Type="Model1.AspNetUsers" Role="AspNetUsers" Multiplicity="1" >
+        <EntityType Name="Subscription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Vacation" Relationship="Model1.VacationSubscription" FromRole="Subscription" ToRole="Vacation" />
+          <Property Name="VacationId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Model1.UserSubscription" FromRole="Subscription" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="VacationSubscription">
+          <End Type="Model1.Vacation" Role="Vacation" Multiplicity="1" >
             <OnDelete Action="Cascade" />
           </End>
+          <End Type="Model1.Subscription" Role="Subscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vacation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Subscription">
+              <PropertyRef Name="VacationId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="UserSubscription">
+          <End Type="Model1.User" Role="User" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model1.Subscription" Role="Subscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Subscription">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -951,6 +824,32 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RNR" ColumnName="RNR" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="HouseNr" ColumnName="HouseNr" />
+          <ScalarProperty Name="Bus" ColumnName="Bus" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="AuthUserId" ColumnName="AuthUserId" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subscriptions">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Subscription)">
+        <MappingFragment StoreEntitySet="Subscriptions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="VacationId" ColumnName="VacationId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="VacationContactInformation" TypeName="Model1.VacationContactInformation" StoreEntitySet="ContactInformations">
       <EndProperty Name="Vacation">
         <ScalarProperty Name="Id" ColumnName="Vacation_Id" />
@@ -984,59 +883,6 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-          <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="Model1.AspNetRoles">
-              <MappingFragment StoreEntitySet="AspNetRoles">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUserClaims">
-            <EntityTypeMapping TypeName="Model1.AspNetUserClaims">
-              <MappingFragment StoreEntitySet="AspNetUserClaims">
-                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
-                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUserLogins">
-            <EntityTypeMapping TypeName="Model1.AspNetUserLogins">
-              <MappingFragment StoreEntitySet="AspNetUserLogins">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
-                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="Model1.AspNetUsers">
-              <MappingFragment StoreEntitySet="AspNetUsers">
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
-                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
-                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
-                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
-                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="Model1.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-            <EndProperty Name="AspNetUsers">
-              <ScalarProperty Name="Id" ColumnName="UserId" />
-            </EndProperty>
-            <EndProperty Name="AspNetRoles">
-              <ScalarProperty Name="Id" ColumnName="RoleId" />
-            </EndProperty>
-          </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
