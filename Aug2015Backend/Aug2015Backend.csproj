@@ -262,6 +262,18 @@
     <Compile Include="Entities\AgeRange.cs">
       <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\AspNetRoles.cs">
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AspNetUserClaims.cs">
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AspNetUserLogins.cs">
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AspNetUsers.cs">
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Comment.cs">
       <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
@@ -300,6 +312,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProjectenAug.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\User.cs">
+      <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Vacation.cs">
       <DependentUpon>Model2.tt</DependentUpon>
