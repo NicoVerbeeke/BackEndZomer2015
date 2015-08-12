@@ -76,7 +76,7 @@ namespace Aug2015Backend.Controllers
         
         [System.Web.Http.AcceptVerbs("GET")]
         [AllowAnonymous]
-        public UserModel getAccount(string username)
+        public UserModel getAccount([FromUri] string username)
         {
             //In our application the username of a user is his/her email adres.
             var iUser = _repo.FindByEmail(username);
