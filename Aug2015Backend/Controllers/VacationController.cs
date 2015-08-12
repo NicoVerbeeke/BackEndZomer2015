@@ -28,6 +28,12 @@ namespace Aug2015Backend.Controllers
             _db = new DataContext();
         }
 
+        /*[Route ("api/")]
+        public List<SubscriptionModel> getVacationSubs(int id)
+        {
+
+        }*/
+
         // api/vacation -> GET Verb
         // retrieve all vacations
         public IEnumerable<VacationModel> GetAllVacations()

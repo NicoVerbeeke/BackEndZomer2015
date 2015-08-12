@@ -17,6 +17,22 @@ namespace Aug2015Backend.Entities
         public int Id { get; set; }
         public int VacationId { get; set; }
         public int UserId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string RNR { get; set; }
+        public string Street { get; set; }
+        public string HouseNr { get; set; }
+        public string PostalCode { get; set; }
+        public string City { get; set; }
+        public string Name_Mother { get; set; }
+        public string Name_Father { get; set; }
+        public string RNR_Mother { get; set; }
+        public string RNR_Father { get; set; }
+        public string TelephoneNumber { get; set; }
+        public string Email { get; set; }
+        public string FacturationAddress { get; set; }
+        public string FacturationName { get; set; }
+        public bool Payed { get; set; }
     
         public virtual Vacation Vacation { get; set; }
         public virtual User User { get; set; }

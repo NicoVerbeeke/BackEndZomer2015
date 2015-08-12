@@ -33,7 +33,6 @@ namespace Aug2015Backend
             };
 
             var result = await _userManager.CreateAsync(user, userModel.Password);
-
             return result;
         }
 
@@ -42,6 +41,11 @@ namespace Aug2015Backend
             IdentityUser user = await _userManager.FindAsync(userName, password);
 
             return user;
+        }
+
+        public IdentityUser FindByEmail(string email)
+        {
+            return _userManager.FindByEmail(email);
         }
 
         public void Dispose()

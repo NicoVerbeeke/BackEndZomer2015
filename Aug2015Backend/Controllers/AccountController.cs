@@ -14,6 +14,10 @@ using Aug2015Backend.DataBaseContext;
 using Aug2015Backend.DataComponentAdapters.ModelToEntity;
 using Aug2015Backend.DataComponentAdapters;
 using Aug2015Backend.DataComponentAdapters.EntityToModel;
+using Aug2015Backend.Models.ModelHelpers;
+using Aug2015Backend.Entities;
+using System.Linq;
+using System.Net;
 
 namespace Aug2015Backend.Controllers
 {
@@ -28,7 +32,7 @@ namespace Aug2015Backend.Controllers
         {
             _repo = new AuthRepository();
             _db = new DataContext();
-        }
+        }        
 
         // POST api/Account/Register
         [System.Web.Http.AcceptVerbs("GET", "POST")]
@@ -45,13 +49,14 @@ namespace Aug2015Backend.Controllers
 
             IHttpActionResult errorResult = GetErrorResult(result);
 
-             _db.Users.Add(await new UserMTEAdapter().MapData(userModel));
-            _db.SaveChanges();
+             
 
             if (errorResult != null)
             {
                 return errorResult;
             }
+            _db.Users.Add(await new UserMTEAdapter().MapData(userModel));
+            _db.SaveChanges();
 
             return Ok();
         }
@@ -71,9 +76,11 @@ namespace Aug2015Backend.Controllers
         
         [System.Web.Http.AcceptVerbs("GET")]
         [AllowAnonymous]
-        public UserModel getAccount(int id)
+        public UserModel getAccount(string username)
         {
-            var userToMap = _db.Users.Find(id);
+            //In our application the username of a user is his/her email adres.
+            var iUser = _repo.FindByEmail(username);
+            var userToMap = _db.Users.Where(u => u.AuthUserId == iUser.Id).Single();
             return new UserETMAdapter().MapData(userToMap);
         }
 

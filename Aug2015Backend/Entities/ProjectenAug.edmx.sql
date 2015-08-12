@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/12/2015 12:39:10
+-- Date Created: 08/12/2015 17:00:43
 -- Generated from EDMX file: C:\Users\Nico\Documents\ProjectenAugustus2015\BackEndZomer2015\Aug2015Backend\Entities\ProjectenAug.edmx
 -- --------------------------------------------------
 
@@ -198,7 +198,23 @@ GO
 CREATE TABLE [dbo].[Subscriptions] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [VacationId] int  NOT NULL,
-    [UserId] int  NOT NULL
+    [UserId] int  NOT NULL,
+    [FirstName] nvarchar(max)  NOT NULL,
+    [LastName] nvarchar(max)  NOT NULL,
+    [RNR] nvarchar(max)  NOT NULL,
+    [Street] nvarchar(max)  NOT NULL,
+    [HouseNr] nvarchar(max)  NOT NULL,
+    [PostalCode] nvarchar(max)  NOT NULL,
+    [City] nvarchar(max)  NOT NULL,
+    [Name_Mother] nvarchar(max)  NOT NULL,
+    [Name_Father] nvarchar(max)  NOT NULL,
+    [RNR_Mother] nvarchar(max)  NOT NULL,
+    [RNR_Father] nvarchar(max)  NOT NULL,
+    [TelephoneNumber] nvarchar(max)  NOT NULL,
+    [Email] nvarchar(max)  NOT NULL,
+    [FacturationAddress] nvarchar(max)  NOT NULL,
+    [FacturationName] nvarchar(max)  NOT NULL,
+    [Payed] bit  NOT NULL
 );
 GO
 

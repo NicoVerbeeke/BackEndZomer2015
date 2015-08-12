@@ -170,6 +170,22 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="VacationId" Type="int" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RNR" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Street" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="HouseNr" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PostalCode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name_Mother" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name_Father" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RNR_Mother" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RNR_Father" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TelephoneNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FacturationAddress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FacturationName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Payed" Type="bit" Nullable="false" />
   </EntityType>
   <Association Name="VacationAgeRange">
     <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="1">
@@ -574,6 +590,22 @@
           <Property Name="VacationId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Model1.UserSubscription" FromRole="Subscription" ToRole="User" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="RNR" Type="String" Nullable="false" />
+          <Property Name="Street" Type="String" Nullable="false" />
+          <Property Name="HouseNr" Type="String" Nullable="false" />
+          <Property Name="PostalCode" Type="String" Nullable="false" />
+          <Property Name="City" Type="String" Nullable="false" />
+          <Property Name="Name_Mother" Type="String" Nullable="false" />
+          <Property Name="Name_Father" Type="String" Nullable="false" />
+          <Property Name="RNR_Mother" Type="String" Nullable="false" />
+          <Property Name="RNR_Father" Type="String" Nullable="false" />
+          <Property Name="TelephoneNumber" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="FacturationAddress" Type="String" Nullable="false" />
+          <Property Name="FacturationName" Type="String" Nullable="false" />
+          <Property Name="Payed" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="VacationSubscription">
           <End Type="Model1.Vacation" Role="Vacation" Multiplicity="1" >
@@ -720,6 +752,22 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="VacationId" ColumnName="VacationId" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="RNR" ColumnName="RNR" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="HouseNr" ColumnName="HouseNr" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Name_Mother" ColumnName="Name_Mother" />
+          <ScalarProperty Name="Name_Father" ColumnName="Name_Father" />
+          <ScalarProperty Name="RNR_Mother" ColumnName="RNR_Mother" />
+          <ScalarProperty Name="RNR_Father" ColumnName="RNR_Father" />
+          <ScalarProperty Name="TelephoneNumber" ColumnName="TelephoneNumber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FacturationAddress" ColumnName="FacturationAddress" />
+          <ScalarProperty Name="FacturationName" ColumnName="FacturationName" />
+          <ScalarProperty Name="Payed" ColumnName="Payed" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

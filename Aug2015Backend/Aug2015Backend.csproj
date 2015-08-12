@@ -255,7 +255,7 @@
     <Compile Include="DataComponentAdapters\ModelToEntity\PriceMTEAdapter.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DataComponentAdapters\ModelToEntity\SubscriptionETMAdapter.cs" />
+    <Compile Include="DataComponentAdapters\ModelToEntity\SubscriptionMTEAdapter.cs" />
     <Compile Include="DataComponentAdapters\ModelToEntity\UserMTEAdapter.cs" />
     <Compile Include="DataComponentAdapters\ModelToEntity\VacationMTEAdapter.cs">
       <SubType>Code</SubType>
