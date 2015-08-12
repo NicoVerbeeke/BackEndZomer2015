@@ -36,7 +36,7 @@ namespace Aug2015Backend.App_Start
                     if (!string.IsNullOrEmpty(origin))
                     {
                         // allow the cross-site request               
-                        //res.Headers.Set("Access-Control-Allow-Origin", origin);
+                        res.Headers.Set("Access-Control-Allow-Origin", origin);
                     }
 
                     // if this is pre-flight request
