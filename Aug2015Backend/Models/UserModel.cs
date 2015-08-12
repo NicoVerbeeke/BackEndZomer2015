@@ -45,7 +45,6 @@ namespace Aug2015Backend.Models
         [Display(Name = "Nr")]
         public String HouseNr { get; set; }
 
-        [Required]
         [Display(Name = "Bus")]
         public String Bus { get; set; }
 
