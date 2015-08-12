@@ -12,7 +12,8 @@ namespace Aug2015Backend.Models
     {
         [Required]
         [Display(Name = "Gebruikersnaam")]
-        public string UserName { get; set; }
+        [DataType(DataType.EmailAddress)]
+        public override string UserName { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
@@ -58,12 +59,15 @@ namespace Aug2015Backend.Models
 
         [Required]
         [Display(Name = "Telefoonnummer")]
-        public String PhoneNumber { get; set; }
+        public override String PhoneNumber { get; set; }
 
         public String AuthUserId { get; set; }
 
         public int Id { get; set; }
 
-       
+        
+        [Display(Name = "e-mail")]
+        [DataType(DataType.EmailAddress)]
+        public override string Email { get; set; }
     }
 }

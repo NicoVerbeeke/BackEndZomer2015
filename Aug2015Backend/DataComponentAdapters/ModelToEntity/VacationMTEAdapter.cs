@@ -17,7 +17,6 @@ namespace Aug2015Backend.DataComponentAdapters
         private AgeRangeMTEAdapter arAdapter= new AgeRangeMTEAdapter();
         private CommentMTEAdapter commentAdapter = new CommentMTEAdapter();
         private ContactInformationMTEAdapter contactInformationAdapter = new ContactInformationMTEAdapter();
-        private GroupMTEAdapter groupAdapter = new GroupMTEAdapter();
         private LocationMTEAdapter locationAdapter = new LocationMTEAdapter();
         private PeriodMTEAdapter periodAdapter = new PeriodMTEAdapter();
         private PictureMTEAdapter pictureAdapter = new PictureMTEAdapter();
@@ -37,11 +36,9 @@ namespace Aug2015Backend.DataComponentAdapters
                 mappedVacation.Cost = priceAdapter.MapData(v.Cost, v.Id);
                 mappedVacation.NumberOfParticipants = v.NumberOfParticipants;
                 mappedVacation.When = periodAdapter.MapData(v.When, v.Id);
-                mappedVacation.Who = groupAdapter.MapData(v.Who, v.Id);
                 mappedVacation.Location = locationAdapter.MapData(v.Location);
-                mappedVacation.Comment = commentAdapter.MapData(v.Comment, v.Id);
-                ICollection<AgeRange> ageRanges = arAdapter.MapData(v.Leeftijd, v.Id);
-                mappedVacation.AgeRange = ageRanges;
+                mappedVacation.Comment = commentAdapter.MapData(v.Comment, v.Id);               
+                mappedVacation.AgeRange = arAdapter.MapData(v.Leeftijd, v.Id);
                 mappedVacation.Titel = v.Titel;
                 mappedVacation.Id = v.Id;
                 mappedVacation.Tax_Benefit = v.Tax_Benefit;

@@ -15,12 +15,11 @@ namespace Aug2015Backend.DataComponentAdapters
         private AgeRangeETMAdapter arAdapter= new AgeRangeETMAdapter();
         private CommentETMAdapter commentAdapter = new CommentETMAdapter();
         private ContactInformationETMAdapter contactInformationAdapter = new ContactInformationETMAdapter();
-        private GroupETMAdapter groupAdapter = new GroupETMAdapter();
         private LocationETMAdapter locationAdapter = new LocationETMAdapter();
-        private PeriodETMAdapter periodAdapter = new PeriodETMAdapter();
         private PictureETMAdapter pictureAdapter = new PictureETMAdapter();
         private PriceETMAdapter priceAdapter = new PriceETMAdapter();
         private IncludedItemETMAdapter itemAdapter = new IncludedItemETMAdapter();
+        private PeriodETMAdapter periodAdapter = new PeriodETMAdapter();
 
         public VacationModel MapData(Aug2015Backend.Entities.Vacation v)
         {
@@ -36,13 +35,11 @@ namespace Aug2015Backend.DataComponentAdapters
                 mappedVacation.Included = itemAdapter.MapData(v.Included);
                 mappedVacation.Cost = priceAdapter.MapData(v.Cost);
                 mappedVacation.NumberOfParticipants = v.NumberOfParticipants; 
-                mappedVacation.When = periodAdapter.MapData(v.When);
-                mappedVacation.Who = groupAdapter.MapData(v.Who);
                 mappedVacation.Location = locationAdapter.MapData(v.Location);
+                mappedVacation.When = periodAdapter.MapData(v.When);
                 ICollection<CommentModel> comments = commentAdapter.MapData(v.Comment);
                 mappedVacation.Comment = comments;
-                ICollection<AgeRangeModel> ageRanges = arAdapter.MapData(v.AgeRange);
-                mappedVacation.Leeftijd = ageRanges;
+                mappedVacation.Leeftijd = arAdapter.MapData(v.AgeRange);
                 mappedVacation.Titel = v.Titel;
                 mappedVacation.Id = v.Id;
                 mappedVacation.Tax_Benefit = v.Tax_Benefit;

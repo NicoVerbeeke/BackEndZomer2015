@@ -6,34 +6,26 @@
     <edmx:Diagrams>
       <Diagram DiagramId="0d7e7c12f48e478aa2cff942cfa4d158" Name="Diagram1" >
         <EntityTypeShape EntityType="Model1.Vacation" Width="1.5" PointX="6" PointY="0.75" />
-        <EntityTypeShape EntityType="Model1.AgeRange" Width="1.5" PointX="9.75" PointY="3.5" />
+        <EntityTypeShape EntityType="Model1.AgeRange" Width="1.5" PointX="8.875" PointY="3.625" />
         <AssociationConnector Association="Model1.VacationAgeRange" />
-        <EntityTypeShape EntityType="Model1.Comment" Width="1.5" PointX="2" PointY="3" />
+        <EntityTypeShape EntityType="Model1.Comment" Width="1.5" PointX="3.75" PointY="3.125" />
         <AssociationConnector Association="Model1.VacationComment" />
-        <EntityTypeShape EntityType="Model1.ContactInformation" Width="1.5" PointX="5.5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.ContactInformation" Width="1.5" PointX="5.5" PointY="5.625" IsExpanded="true" />
         <AssociationConnector Association="Model1.VacationContactInformation" />
-        <EntityTypeShape EntityType="Model1.Group" Width="1.5" PointX="3.625" PointY="6.25" />
-        <AssociationConnector Association="Model1.GroupAgeRange" ManuallyRouted="false" >
-        </AssociationConnector>
-        <EntityTypeShape EntityType="Model1.Location" Width="1.5" PointX="11.5" PointY="2.125" />
+        <EntityTypeShape EntityType="Model1.Location" Width="1.5" PointX="10.625" PointY="2.125" />
         <AssociationConnector Association="Model1.VacationLocation" />
-        <EntityTypeShape EntityType="Model1.Period" Width="1.5" PointX="13.25" PointY="2.125" />
+        <EntityTypeShape EntityType="Model1.Period" Width="1.5" PointX="12.25" PointY="2.125" />
         <AssociationConnector Association="Model1.VacationPeriod" />
-        <AssociationConnector Association="Model1.VacationGroup" ManuallyRouted="true" >
-          <ConnectorPoint PointX="7.28125" PointY="4.65330078125" />
-          <ConnectorPoint PointX="7.28125" PointY="8.2615364583333335" />
-          <ConnectorPoint PointX="5.125" PointY="8.2615364583333335" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="Model1.Picture" Width="1.5" PointX="9.75" PointY="1.25" />
+        <EntityTypeShape EntityType="Model1.Picture" Width="1.5" PointX="8.875" PointY="1.25" />
         <AssociationConnector Association="Model1.VacationCoverPicture" />
-        <EntityTypeShape EntityType="Model1.Price" Width="1.5" PointX="10.25" PointY="6.25" />
+        <EntityTypeShape EntityType="Model1.Price" Width="1.5" PointX="1.75" PointY="1" />
         <AssociationConnector Association="Model1.VacationPrice" ManuallyRouted="false" >
         </AssociationConnector>
-        <EntityTypeShape EntityType="Model1.IncludedItem" Width="1.5" PointX="2" PointY="0.875" />
+        <EntityTypeShape EntityType="Model1.IncludedItem" Width="1.5" PointX="3.75" PointY="1" />
         <AssociationConnector Association="Model1.VacationIncludedItem" />
         <AssociationConnector Association="Model1.VacationPicture" />
-        <EntityTypeShape EntityType="Model1.User" Width="1.5" PointX="7.875" PointY="6.25" />
-        <EntityTypeShape EntityType="Model1.Subscription" Width="1.5" PointX="1.125" PointY="6.5" />
+        <EntityTypeShape EntityType="Model1.User" Width="1.5" PointX="8.875" PointY="5.625" />
+        <EntityTypeShape EntityType="Model1.Subscription" Width="1.5" PointX="7.125" PointY="5.625" />
         <AssociationConnector Association="Model1.VacationSubscription" />
         <AssociationConnector Association="Model1.UserSubscription" />
         </Diagram>

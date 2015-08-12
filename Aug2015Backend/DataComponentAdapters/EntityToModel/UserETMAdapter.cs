@@ -44,7 +44,7 @@ namespace Aug2015Backend.DataComponentAdapters.EntityToModel
             um.Bus = u.Bus;
             um.City = u.City;
             um.PostalCode = u.PostalCode;
-            um.PhoneNumber = u.PhoneNumber;
+            um.PhoneNumber = iUser.PhoneNumber;
             um.AuthUserId = iUser.Id;
             um.Id = u.Id;            
 

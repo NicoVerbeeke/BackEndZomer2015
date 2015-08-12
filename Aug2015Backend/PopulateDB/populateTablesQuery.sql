@@ -11,15 +11,15 @@ Zo staan het voederen van de dieren, een ritje met de pony, het bakken van je ei
 Alle dieren op de boerderij wachten vol ongeduld op jouw knuffels en goede zorgen.
 Wees er dus als de kippen bij en schrijf je snel in voor deze superweek!', 1);
 
-Insert into AgeRanges([Min_leeftijd], [Max_leeftijd], [VacationId]) values(4, 6, 1);
-Insert into AgeRanges([Min_leeftijd], [Max_leeftijd], [VacationId]) values(7, 10, 1);
+Insert into AgeRanges([Min_leeftijd], [Max_leeftijd], [Vacation_Id]) values(4, 6, 1);
+--Insert into AgeRanges([Min_leeftijd], [Max_leeftijd], [VacationId]) values(7, 10, 1);
 
 Insert into Locations([VacationDomain], [City], [Vacation_Id]) values ('Diggie vzw', 'Brakel', 1);
 
-Insert into Groups([GroupNr], [AgeRangeId], [VacationId]) values (1, 1, 1);
-Insert into Groups([GroupNr], [AgeRangeId], [VacationId]) values (2, 2, 1);
+--Insert into Groups([GroupNr], [AgeRangeId], [VacationId]) values (1, 1, 1);
+--Insert into Groups([GroupNr], [AgeRangeId], [VacationId]) values (2, 2, 1);
 
-Insert into Periods([PeriodNr], [DateStart], [DateEnd], [VacationId]) values (1, '2014-08-12T04:31:20', '2014-08-12T04:31:20', 1);
+Insert into Periods([PeriodNr], [DateStart], [DateEnd], [Vacation_Id]) values (1, '2014-08-12T04:31:20', '2014-08-12T04:31:20', 1);
 
 Insert into Prices([BasePrice], [SingleStarPrice], [DoubleStarPrice], [Vacation_Id]) values (190, 160, 130, 1);
 

@@ -24,6 +24,5 @@ namespace Aug2015Backend.Entities
         public string City { get; set; }
         public string PostalCode { get; set; }
         public string AuthUserId { get; set; }
-        public string PhoneNumber { get; set; }
     }
 }

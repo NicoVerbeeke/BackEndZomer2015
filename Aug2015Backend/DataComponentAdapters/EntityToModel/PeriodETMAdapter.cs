@@ -9,24 +9,15 @@ namespace Aug2015Backend.DataComponentAdapters.EntityToModel
 {
     public class PeriodETMAdapter
     {
-        public ICollection<PeriodModel> MapData(ICollection<Period> periods)
-        {
-            ICollection<PeriodModel> mappedPeriods = new List<PeriodModel>();
-
-            foreach (Period p in periods)
-            {
-                if (p != null) { 
-                PeriodModel pm = new PeriodModel();
-                pm.Id = p.Id;
-                pm.PeriodNr = p.PeriodNr;
-                pm.DateStart = p.DateStart;
-                pm.DateEnd = p.DateEnd;
-                pm.VacId = p.Vacation.Id;
-                mappedPeriods.Add(pm);
-                }
-            }
-
-            return mappedPeriods;
+        public PeriodModel MapData(Period p)
+        {        
+            PeriodModel pm = new PeriodModel();
+            pm.Id = p.Id;
+            pm.PeriodNr = p.PeriodNr;
+            pm.DateStart = p.DateStart;
+            pm.DateEnd = p.DateEnd;
+            pm.VacId = p.Vacation.Id;
+            return pm;
         }
     }
 }

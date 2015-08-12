@@ -18,16 +18,14 @@ namespace Aug2015Backend.Models
         public String Titel { get; set; }
 
         [JsonProperty(PropertyName = "leeftijd")]
-        public virtual ICollection <AgeRangeModel> Leeftijd { get; set; }
+        public virtual AgeRangeModel Leeftijd { get; set; }
 
         [JsonProperty(PropertyName = "waar")]
         public virtual LocationModel Location { get; set; }
 
-        [JsonProperty(PropertyName = "wie")]
-        public virtual ICollection<GroupModel> Who { get; set; }
 
         [JsonProperty(PropertyName = "wanneer")]
-        public virtual ICollection<PeriodModel> When { get; set; }
+        public virtual PeriodModel When { get; set; }
 
         [JsonProperty(PropertyName = "aantal_deelnemers")]
         public int NumberOfParticipants { get; set; }

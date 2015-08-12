@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/11/2015 22:34:42
+-- Date Created: 08/12/2015 12:39:10
 -- Generated from EDMX file: C:\Users\Nico\Documents\ProjectenAugustus2015\BackEndZomer2015\Aug2015Backend\Entities\ProjectenAug.edmx
 -- --------------------------------------------------
 
@@ -26,17 +26,11 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_VacationContactInformation]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ContactInformations] DROP CONSTRAINT [FK_VacationContactInformation];
 GO
-IF OBJECT_ID(N'[dbo].[FK_GroupAgeRange]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Groups] DROP CONSTRAINT [FK_GroupAgeRange];
-GO
 IF OBJECT_ID(N'[dbo].[FK_VacationLocation]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Locations] DROP CONSTRAINT [FK_VacationLocation];
 GO
 IF OBJECT_ID(N'[dbo].[FK_VacationPeriod]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Periods] DROP CONSTRAINT [FK_VacationPeriod];
-GO
-IF OBJECT_ID(N'[dbo].[FK_VacationGroup]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Groups] DROP CONSTRAINT [FK_VacationGroup];
 GO
 IF OBJECT_ID(N'[dbo].[FK_VacationCoverPicture]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Pictures] DROP CONSTRAINT [FK_VacationCoverPicture];
@@ -49,6 +43,12 @@ IF OBJECT_ID(N'[dbo].[FK_VacationIncludedItem]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_VacationPicture]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Pictures] DROP CONSTRAINT [FK_VacationPicture];
+GO
+IF OBJECT_ID(N'[dbo].[FK_VacationSubscription]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Subscriptions] DROP CONSTRAINT [FK_VacationSubscription];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserSubscription]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Subscriptions] DROP CONSTRAINT [FK_UserSubscription];
 GO
 
 -- --------------------------------------------------
@@ -67,9 +67,6 @@ GO
 IF OBJECT_ID(N'[dbo].[ContactInformations]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ContactInformations];
 GO
-IF OBJECT_ID(N'[dbo].[Groups]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Groups];
-GO
 IF OBJECT_ID(N'[dbo].[Locations]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Locations];
 GO
@@ -87,6 +84,9 @@ IF OBJECT_ID(N'[dbo].[IncludedItems]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Users];
+GO
+IF OBJECT_ID(N'[dbo].[Subscriptions]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Subscriptions];
 GO
 
 -- --------------------------------------------------
@@ -108,7 +108,7 @@ CREATE TABLE [dbo].[AgeRanges] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Min_leeftijd] int  NOT NULL,
     [Max_leeftijd] int  NOT NULL,
-    [VacationId] int  NOT NULL
+    [Vacation_Id] int  NOT NULL
 );
 GO
 
@@ -131,15 +131,6 @@ CREATE TABLE [dbo].[ContactInformations] (
 );
 GO
 
--- Creating table 'Groups'
-CREATE TABLE [dbo].[Groups] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [GroupNr] int  NOT NULL,
-    [AgeRangeId] int  NULL,
-    [VacationId] int  NOT NULL
-);
-GO
-
 -- Creating table 'Locations'
 CREATE TABLE [dbo].[Locations] (
     [Id] int IDENTITY(1,1) NOT NULL,
@@ -155,7 +146,7 @@ CREATE TABLE [dbo].[Periods] (
     [PeriodNr] int  NOT NULL,
     [DateStart] datetime  NOT NULL,
     [DateEnd] datetime  NOT NULL,
-    [VacationId] int  NOT NULL
+    [Vacation_Id] int  NOT NULL
 );
 GO
 
@@ -199,8 +190,7 @@ CREATE TABLE [dbo].[Users] (
     [Bus] nvarchar(max)  NOT NULL,
     [City] nvarchar(max)  NOT NULL,
     [PostalCode] nvarchar(max)  NOT NULL,
-    [AuthUserId] nvarchar(max)  NOT NULL,
-    [PhoneNumber] nvarchar(max)  NOT NULL
+    [AuthUserId] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -237,12 +227,6 @@ GO
 -- Creating primary key on [Id] in table 'ContactInformations'
 ALTER TABLE [dbo].[ContactInformations]
 ADD CONSTRAINT [PK_ContactInformations]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'Groups'
-ALTER TABLE [dbo].[Groups]
-ADD CONSTRAINT [PK_Groups]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -292,10 +276,10 @@ GO
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- Creating foreign key on [VacationId] in table 'AgeRanges'
+-- Creating foreign key on [Vacation_Id] in table 'AgeRanges'
 ALTER TABLE [dbo].[AgeRanges]
 ADD CONSTRAINT [FK_VacationAgeRange]
-    FOREIGN KEY ([VacationId])
+    FOREIGN KEY ([Vacation_Id])
     REFERENCES [dbo].[Vacations]
         ([Id])
     ON DELETE CASCADE ON UPDATE NO ACTION;
@@ -304,7 +288,7 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_VacationAgeRange'
 CREATE INDEX [IX_FK_VacationAgeRange]
 ON [dbo].[AgeRanges]
-    ([VacationId]);
+    ([Vacation_Id]);
 GO
 
 -- Creating foreign key on [VacationId] in table 'Comments'
@@ -337,21 +321,6 @@ ON [dbo].[ContactInformations]
     ([Vacation_Id]);
 GO
 
--- Creating foreign key on [AgeRangeId] in table 'Groups'
-ALTER TABLE [dbo].[Groups]
-ADD CONSTRAINT [FK_GroupAgeRange]
-    FOREIGN KEY ([AgeRangeId])
-    REFERENCES [dbo].[AgeRanges]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_GroupAgeRange'
-CREATE INDEX [IX_FK_GroupAgeRange]
-ON [dbo].[Groups]
-    ([AgeRangeId]);
-GO
-
 -- Creating foreign key on [Vacation_Id] in table 'Locations'
 ALTER TABLE [dbo].[Locations]
 ADD CONSTRAINT [FK_VacationLocation]
@@ -367,10 +336,10 @@ ON [dbo].[Locations]
     ([Vacation_Id]);
 GO
 
--- Creating foreign key on [VacationId] in table 'Periods'
+-- Creating foreign key on [Vacation_Id] in table 'Periods'
 ALTER TABLE [dbo].[Periods]
 ADD CONSTRAINT [FK_VacationPeriod]
-    FOREIGN KEY ([VacationId])
+    FOREIGN KEY ([Vacation_Id])
     REFERENCES [dbo].[Vacations]
         ([Id])
     ON DELETE CASCADE ON UPDATE NO ACTION;
@@ -379,22 +348,7 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_VacationPeriod'
 CREATE INDEX [IX_FK_VacationPeriod]
 ON [dbo].[Periods]
-    ([VacationId]);
-GO
-
--- Creating foreign key on [VacationId] in table 'Groups'
-ALTER TABLE [dbo].[Groups]
-ADD CONSTRAINT [FK_VacationGroup]
-    FOREIGN KEY ([VacationId])
-    REFERENCES [dbo].[Vacations]
-        ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_VacationGroup'
-CREATE INDEX [IX_FK_VacationGroup]
-ON [dbo].[Groups]
-    ([VacationId]);
+    ([Vacation_Id]);
 GO
 
 -- Creating foreign key on [VacationCoverPicture_PictureModel_Id] in table 'Pictures'

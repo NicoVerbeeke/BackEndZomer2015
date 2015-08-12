@@ -37,7 +37,6 @@ namespace Aug2015Backend.DataComponentAdapters.ModelToEntity
             u.City = um.City;
             u.PostalCode = um.PostalCode;
             u.AuthUserId = iUser.Id;
-            u.PhoneNumber = um.PhoneNumber;
             return u;
         }
 

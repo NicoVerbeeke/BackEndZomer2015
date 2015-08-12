@@ -27,7 +27,7 @@ namespace Aug2015Backend.DataComponentAdapters
             mappedAgeRange.Id = arm.Id;
             mappedAgeRange.Min_leeftijd = arm.Min_leeftijd;
             mappedAgeRange.Max_leeftijd = arm.Max_leeftijd;
-            mappedAgeRange.VacationId = vacId;
+            mappedAgeRange.Vacation.Id = vacId;
 
             return mappedAgeRange;
         }

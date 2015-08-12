@@ -197,6 +197,7 @@
     <Compile Include="AuthRepository.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\SubscriptionController.cs" />
+    <Compile Include="Controllers\PictureController.cs" />
     <Compile Include="Controllers\VacationController.cs" />
     <Compile Include="DataBaseContext\AuthContext.cs" />
     <Compile Include="DataBaseContext\DataContext.cs" />
@@ -208,9 +209,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DataComponentAdapters\EntityToModel\ContactInformationETMAdapter.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DataComponentAdapters\EntityToModel\GroupETMAdapter.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DataComponentAdapters\EntityToModel\IncludedItemETMAdapter.cs">
@@ -242,9 +240,6 @@
     <Compile Include="DataComponentAdapters\ModelToEntity\ContactInformationMTEAdapter.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DataComponentAdapters\ModelToEntity\GroupMTEAdapter.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="DataComponentAdapters\ModelToEntity\IncludedItemMTEAdapter.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -272,9 +267,6 @@
       <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\ContactInformation.cs">
-      <DependentUpon>Model2.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Group.cs">
       <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\IncludedItem.cs">

@@ -18,7 +18,6 @@ namespace Aug2015Backend.Entities
         public int PeriodNr { get; set; }
         public System.DateTime DateStart { get; set; }
         public System.DateTime DateEnd { get; set; }
-        public int VacationId { get; set; }
     
         public virtual Vacation Vacation { get; set; }
     }

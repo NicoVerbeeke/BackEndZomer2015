@@ -41,7 +41,7 @@ namespace Aug2015Backend.Controllers
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await _repo.RegisterUser(new AuthenticationModelAdapter().CreateRegistrationModel(userModel));
+            IdentityResult result = await _repo.RegisterUser(userModel);
 
             IHttpActionResult errorResult = GetErrorResult(result);
 

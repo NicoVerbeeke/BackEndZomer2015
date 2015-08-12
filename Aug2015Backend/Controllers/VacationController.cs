@@ -73,40 +73,21 @@ namespace Aug2015Backend.Controllers
             if (original != null)
             {
                 original.Titel = vacModel.Titel;
-                
-                foreach (AgeRange ar in original.AgeRange)
-                {
-                    foreach (AgeRangeModel arm in vacModel.Leeftijd)
-                    {
-                        if(arm.Id == ar.Id)
-                        _db.Entry(ar).CurrentValues.SetValues(new AgeRangeMTEAdapter().MapData(arm, vacModel.Id));
 
-                    }
-                }
+
+                var originalAgeRange = original.AgeRange;
+                _db.Entry(originalAgeRange).CurrentValues.SetValues(new AgeRangeMTEAdapter().MapData(vacModel.Leeftijd, vacModel.Id));
+                  
                 var originalLocation = original.Location;
                 _db.Entry(originalLocation).CurrentValues.SetValues(new LocationMTEAdapter().MapData(vacModel.Location));
-
-                foreach (Group g in original.Who)
-                {
-                    foreach (GroupModel gm in vacModel.Who)
-                    {
-                        if (g.Id == gm.Id)
-                            _db.Entry(g).CurrentValues.SetValues(new GroupMTEAdapter().MapData(gm, vacModel.Id));
-                    }
-                }
-
-                foreach (Period p in original.When)
-                {
-                    foreach (PeriodModel pm in vacModel.When)
-                    {
-                        if (p.Id == pm.Id)
-                            _db.Entry(p).CurrentValues.SetValues(new PeriodMTEAdapter().MapData(pm, vacModel.Id));
-                    }
-                }
                 
                 original.NumberOfParticipants = vacModel.NumberOfParticipants;
+
                 var originalCost = original.Cost;
                 _db.Entry(originalCost).CurrentValues.SetValues(new PriceMTEAdapter().MapData(vacModel.Cost, vacModel.Id));
+
+                var originalPeriod = original.When;
+                _db.Entry(originalPeriod).CurrentValues.SetValues(new PeriodMTEAdapter().MapData(vacModel.When, vacModel.Id));
 
                 foreach (IncludedItem i in original.Included)
                 {
@@ -171,17 +152,11 @@ namespace Aug2015Backend.Controllers
       
             if (VacationToDelete != null)
             {
-                /*foreach (Group g in VacationToDelete.Who)
-                {
-                    _db.Who.Remove(g);
-                }
-
-                foreach (AgeRange ar in VacationToDelete.AgeRange)
-                {
-                    _db.AgeRanges.Remove(ar);
-                }*/
+               
 
                 _db.Entry(VacationToDelete.Cost).State = EntityState.Deleted;
+                _db.Entry(VacationToDelete.AgeRange).State = EntityState.Deleted;
+                _db.Entry(VacationToDelete.When).State = EntityState.Deleted;
                 _db.Entry(VacationToDelete.ContactInformation).State = EntityState.Deleted;
                 _db.Entry(VacationToDelete.Location).State = EntityState.Deleted;
                 _db.Entry(VacationToDelete.Cover).State = EntityState.Deleted;

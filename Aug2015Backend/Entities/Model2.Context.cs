@@ -29,7 +29,6 @@ namespace Aug2015Backend.Entities
         public virtual DbSet<AgeRange> AgeRanges { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<ContactInformation> ContactInformations { get; set; }
-        public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Period> Periods { get; set; }
         public virtual DbSet<Picture> Pictures { get; set; }

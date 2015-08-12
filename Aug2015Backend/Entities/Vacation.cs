@@ -16,10 +16,7 @@ namespace Aug2015Backend.Entities
     {
         public Vacation()
         {
-            this.AgeRange = new HashSet<AgeRange>();
             this.Comment = new HashSet<Comment>();
-            this.When = new HashSet<Period>();
-            this.Who = new HashSet<Group>();
             this.Included = new HashSet<IncludedItem>();
             this.Picture = new HashSet<Picture>();
         }
@@ -30,12 +27,11 @@ namespace Aug2015Backend.Entities
         public string PromoText { get; set; }
         public bool Tax_Benefit { get; set; }
     
-        public virtual ICollection<AgeRange> AgeRange { get; set; }
+        public virtual AgeRange AgeRange { get; set; }
         public virtual ICollection<Comment> Comment { get; set; }
         public virtual ContactInformation ContactInformation { get; set; }
         public virtual Location Location { get; set; }
-        public virtual ICollection<Period> When { get; set; }
-        public virtual ICollection<Group> Who { get; set; }
+        public virtual Period When { get; set; }
         public virtual Picture Cover { get; set; }
         public virtual Price Cost { get; set; }
         public virtual ICollection<IncludedItem> Included { get; set; }

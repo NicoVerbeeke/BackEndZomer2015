@@ -23,14 +23,16 @@ namespace Aug2015Backend
             _userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(_ctx));
         }
 
-        public async Task<IdentityResult> RegisterUser(RegistrationModel registrationModel)
+        public async Task<IdentityResult> RegisterUser(UserModel userModel)
         {
             IdentityUser user = new IdentityUser
             {
-                UserName = registrationModel.UserName
+                UserName = userModel.UserName,
+                Email = userModel.UserName,
+                PhoneNumber = userModel.PhoneNumber
             };
 
-            var result = await _userManager.CreateAsync(user, registrationModel.Password);
+            var result = await _userManager.CreateAsync(user, userModel.Password);
 
             return result;
         }

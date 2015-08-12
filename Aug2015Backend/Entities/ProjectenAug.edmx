@@ -10,7 +10,6 @@
     <EntitySet Name="AgeRanges" EntityType="Model1.Store.AgeRanges" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Comments" EntityType="Model1.Store.Comments" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ContactInformations" EntityType="Model1.Store.ContactInformations" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Groups" EntityType="Model1.Store.Groups" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Locations" EntityType="Model1.Store.Locations" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Periods" EntityType="Model1.Store.Periods" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Pictures" EntityType="Model1.Store.Pictures" store:Type="Tables" Schema="dbo" />
@@ -30,10 +29,6 @@
       <End Role="Vacation" EntitySet="Vacations" />
       <End Role="ContactInformation" EntitySet="ContactInformations" />
     </AssociationSet>
-    <AssociationSet Name="GroupAgeRange" Association="Model1.Store.GroupAgeRange">
-      <End Role="Group" EntitySet="Groups" />
-      <End Role="AgeRange" EntitySet="AgeRanges" />
-    </AssociationSet>
     <AssociationSet Name="VacationLocation" Association="Model1.Store.VacationLocation">
       <End Role="Vacation" EntitySet="Vacations" />
       <End Role="Location" EntitySet="Locations" />
@@ -41,10 +36,6 @@
     <AssociationSet Name="VacationPeriod" Association="Model1.Store.VacationPeriod">
       <End Role="Vacation" EntitySet="Vacations" />
       <End Role="Period" EntitySet="Periods" />
-    </AssociationSet>
-    <AssociationSet Name="VacationGroup" Association="Model1.Store.VacationGroup">
-      <End Role="Vacation" EntitySet="Vacations" />
-      <End Role="Group" EntitySet="Groups" />
     </AssociationSet>
     <AssociationSet Name="VacationCoverPicture" Association="Model1.Store.VacationCoverPicture">
       <End Role="Vacation" EntitySet="Vacations" />
@@ -88,7 +79,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Min_leeftijd" Type="int" Nullable="false" />
     <Property Name="Max_leeftijd" Type="int" Nullable="false" />
-    <Property Name="VacationId" Type="int" Nullable="false" />
+    <Property Name="Vacation_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Comments">
     <Key>
@@ -109,15 +100,6 @@
     <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Vacation_Id" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="Groups">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="GroupNr" Type="int" Nullable="false" />
-    <Property Name="AgeRangeId" Type="int" Nullable="true" />
-    <Property Name="VacationId" Type="int" Nullable="false" />
-  </EntityType>
   <EntityType Name="Locations">
     <Key>
       <PropertyRef Name="Id" />
@@ -135,7 +117,7 @@
     <Property Name="PeriodNr" Type="int" Nullable="false" />
     <Property Name="DateStart" Type="datetime" Nullable="false" />
     <Property Name="DateEnd" Type="datetime" Nullable="false" />
-    <Property Name="VacationId" Type="int" Nullable="false" />
+    <Property Name="Vacation_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Pictures">
     <Key>
@@ -180,7 +162,6 @@
     <Property Name="City" Type="nvarchar(max)" Nullable="false" />
     <Property Name="PostalCode" Type="nvarchar(max)" Nullable="false" />
     <Property Name="AuthUserId" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Subscriptions">
     <Key>
@@ -200,7 +181,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="AgeRange">
-        <PropertyRef Name="VacationId" />
+        <PropertyRef Name="Vacation_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -230,18 +211,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="GroupAgeRange">
-    <End Role="Group" Type="Model1.Store.Groups" Multiplicity="*" />
-    <End Role="AgeRange" Type="Model1.Store.AgeRanges" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="AgeRange">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Group">
-        <PropertyRef Name="AgeRangeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="VacationLocation">
     <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="1" />
     <End Role="Location" Type="Model1.Store.Locations" Multiplicity="*" />
@@ -264,21 +233,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Period">
-        <PropertyRef Name="VacationId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="VacationGroup">
-    <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Group" Type="Model1.Store.Groups" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Vacation">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Group">
-        <PropertyRef Name="VacationId" />
+        <PropertyRef Name="Vacation_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -385,11 +340,6 @@
             <End Role="Vacation" EntitySet="Vacations" />
             <End Role="ContactInformation" EntitySet="ContactInformations" />
           </AssociationSet>
-          <EntitySet Name="Groups" EntityType="Model1.Group" />
-          <AssociationSet Name="GroupAgeRange" Association="Model1.GroupAgeRange">
-            <End Role="Group" EntitySet="Groups" />
-            <End Role="AgeRange" EntitySet="AgeRanges" />
-          </AssociationSet>
           <EntitySet Name="Locations" EntityType="Model1.Location" />
           <AssociationSet Name="VacationLocation" Association="Model1.VacationLocation">
             <End Role="Vacation" EntitySet="Vacations" />
@@ -399,10 +349,6 @@
           <AssociationSet Name="VacationPeriod" Association="Model1.VacationPeriod">
             <End Role="Vacation" EntitySet="Vacations" />
             <End Role="Period" EntitySet="Periods" />
-          </AssociationSet>
-          <AssociationSet Name="VacationGroup" Association="Model1.VacationGroup">
-            <End Role="Vacation" EntitySet="Vacations" />
-            <End Role="Group" EntitySet="Groups" />
           </AssociationSet>
           <EntitySet Name="Pictures" EntityType="Model1.Picture" />
           <AssociationSet Name="VacationCoverPicture" Association="Model1.VacationCoverPicture">
@@ -445,7 +391,6 @@
           <NavigationProperty Name="ContactInformation" Relationship="Model1.VacationContactInformation" FromRole="Vacation" ToRole="ContactInformation" />
           <NavigationProperty Name="Location" Relationship="Model1.VacationLocation" FromRole="Vacation" ToRole="Location" />
           <NavigationProperty Name="When" Relationship="Model1.VacationPeriod" FromRole="Vacation" ToRole="Period" />
-          <NavigationProperty Name="Who" Relationship="Model1.VacationGroup" FromRole="Vacation" ToRole="Group" />
           <NavigationProperty Name="Cover" Relationship="Model1.VacationCoverPicture" FromRole="Vacation" ToRole="PictureModel" />
           <NavigationProperty Name="Cost" Relationship="Model1.VacationPrice" FromRole="Vacation" ToRole="Price" />
           <Property Name="NumberOfParticipants" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
@@ -462,22 +407,12 @@
           <Property Name="Min_leeftijd" Type="Int32" Nullable="false" />
           <Property Name="Max_leeftijd" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Vacation" Relationship="Model1.VacationAgeRange" FromRole="AgeRange" ToRole="Vacation" />
-          <Property Name="VacationId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Group" Relationship="Model1.GroupAgeRange" FromRole="AgeRange" ToRole="Group" />
         </EntityType>
         <Association Name="VacationAgeRange">
           <End Type="Model1.Vacation" Role="Vacation" Multiplicity="1" >
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="Model1.AgeRange" Role="AgeRange" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vacation">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AgeRange">
-              <PropertyRef Name="VacationId" />
-            </Dependent>
-          </ReferentialConstraint>
+          <End Type="Model1.AgeRange" Role="AgeRange" Multiplicity="0..1" />
         </Association>
         <EntityType Name="Comment">
           <Key>
@@ -517,31 +452,6 @@
           <End Type="Model1.Vacation" Role="Vacation" Multiplicity="1" />
           <End Type="Model1.ContactInformation" Role="ContactInformation" Multiplicity="0..1" />
         </Association>
-        <EntityType Name="Group">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="GroupNr" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="AgeRange" Relationship="Model1.GroupAgeRange" FromRole="Group" ToRole="AgeRange" />
-          <Property Name="AgeRangeId" Type="Int32" Nullable="true" />
-          <NavigationProperty Name="Vacation" Relationship="Model1.VacationGroup" FromRole="Group" ToRole="Vacation" />
-          <Property Name="VacationId" Type="Int32" Nullable="false" />
-        </EntityType>
-        <Association Name="GroupAgeRange">
-          <End Type="Model1.Group" Role="Group" Multiplicity="*" >
-          </End>
-          <End Type="Model1.AgeRange" Role="AgeRange" Multiplicity="0..1" >
-          </End>
-          <ReferentialConstraint>
-            <Principal Role="AgeRange">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Group">
-              <PropertyRef Name="AgeRangeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Location">
           <Key>
             <PropertyRef Name="Id" />
@@ -564,35 +474,12 @@
           <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateEnd" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Vacation" Relationship="Model1.VacationPeriod" FromRole="Period" ToRole="Vacation" />
-          <Property Name="VacationId" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="VacationPeriod">
           <End Type="Model1.Vacation" Role="Vacation" Multiplicity="1" >
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="Model1.Period" Role="Period" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vacation">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Period">
-              <PropertyRef Name="VacationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="VacationGroup">
-          <End Type="Model1.Vacation" Role="Vacation" Multiplicity="1" >
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="Model1.Group" Role="Group" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vacation">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Group">
-              <PropertyRef Name="VacationId" />
-            </Dependent>
-          </ReferentialConstraint>
+          <End Type="Model1.Period" Role="Period" Multiplicity="0..1" />
         </Association>
         <EntityType Name="Picture">
           <Key>
@@ -677,7 +564,6 @@
           <Property Name="City" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="AuthUserId" Type="String" Nullable="false" />
-          <Property Name="PhoneNumber" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Subscription">
           <Key>
@@ -740,7 +626,6 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Min_leeftijd" ColumnName="Min_leeftijd" />
           <ScalarProperty Name="Max_leeftijd" ColumnName="Max_leeftijd" />
-          <ScalarProperty Name="VacationId" ColumnName="VacationId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -764,16 +649,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Groups">
-      <EntityTypeMapping TypeName="IsTypeOf(Model1.Group)">
-        <MappingFragment StoreEntitySet="Groups">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="GroupNr" ColumnName="GroupNr" />
-          <ScalarProperty Name="AgeRangeId" ColumnName="AgeRangeId" />
-          <ScalarProperty Name="VacationId" ColumnName="VacationId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Locations">
       <EntityTypeMapping TypeName="IsTypeOf(Model1.Location)">
         <MappingFragment StoreEntitySet="Locations">
@@ -790,7 +665,6 @@
           <ScalarProperty Name="PeriodNr" ColumnName="PeriodNr" />
           <ScalarProperty Name="DateStart" ColumnName="DateStart" />
           <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
-          <ScalarProperty Name="VacationId" ColumnName="VacationId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -837,7 +711,6 @@
           <ScalarProperty Name="City" ColumnName="City" />
           <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
           <ScalarProperty Name="AuthUserId" ColumnName="AuthUserId" />
-          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -850,6 +723,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <AssociationSetMapping Name="VacationAgeRange" TypeName="Model1.VacationAgeRange" StoreEntitySet="AgeRanges">
+      <EndProperty Name="Vacation">
+        <ScalarProperty Name="Id" ColumnName="Vacation_Id" />
+      </EndProperty>
+      <EndProperty Name="AgeRange">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
     <AssociationSetMapping Name="VacationContactInformation" TypeName="Model1.VacationContactInformation" StoreEntitySet="ContactInformations">
       <EndProperty Name="Vacation">
         <ScalarProperty Name="Id" ColumnName="Vacation_Id" />
@@ -863,6 +744,14 @@
         <ScalarProperty Name="Id" ColumnName="Vacation_Id" />
       </EndProperty>
       <EndProperty Name="Location">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="VacationPeriod" TypeName="Model1.VacationPeriod" StoreEntitySet="Periods">
+      <EndProperty Name="Vacation">
+        <ScalarProperty Name="Id" ColumnName="Vacation_Id" />
+      </EndProperty>
+      <EndProperty Name="Period">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
