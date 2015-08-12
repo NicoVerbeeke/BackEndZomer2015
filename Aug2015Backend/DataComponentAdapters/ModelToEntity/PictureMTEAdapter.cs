@@ -21,7 +21,6 @@ namespace Aug2015Backend.DataComponentAdapters.ModelToEntity
                 pic.Titel = pictureModel.Titel;
                 pic.Url = pictureModel.Url;
                 pic.Description = pictureModel.Description;
-                //pic.Vacation = vacationAdapter.getVacation(p);
                 pic.VacationId = pictureModel.VacId;
             }
             return pic;

@@ -26,17 +26,24 @@ namespace Aug2015Backend.Controllers
             _db = new DataContext();
         }
 
-
-        //GET -> api/Account/Subs/{id}
+        //GET -> api/Account/Subs/{id}?type={type}
+        // type = vacation => returns all subscriptions for the vacation with id = {id}
+        // type = user => returns all subscriptions for the user with id = {id}
         //gets all subscriptions for the given userid
         [AcceptVerbs("GET")]
-        public List<SubscriptionModel> GetSubscription(int id)
+        public List<SubscriptionModel> GetSubscription(int id, [FromUri] string type)
         {
             List<Subscription> subs = new List<Subscription>();
-            subs = _db.Subscriptions.Where(s => s.VacationId == id).ToList();
-
-            
             List<SubscriptionModel> subModels = new List<SubscriptionModel>();
+
+            switch (type) { 
+                case "vacation": subs = _db.Subscriptions.Where(s => s.VacationId == id).ToList();
+                    break;
+                case "user": subs = _db.Subscriptions.Where(s => s.UserId == id).ToList();
+                    break;
+                default: return subModels;                
+            }               
+            
             SubscriptionETMAdapter subAdapter = new SubscriptionETMAdapter();
             foreach (Subscription sub in subs)
             {
@@ -87,7 +94,14 @@ namespace Aug2015Backend.Controllers
                             || ((period.DateEnd.CompareTo(wantedVacation.When.DateEnd) <= 0) && (period.DateEnd.CompareTo(wantedVacation.When.DateStart) >= 1))))
                             {
                                 _db.Subscriptions.Add(new SubscriptionMTEAdapter().MapData(model));
-                                _db.SaveChanges();                            
+                                try
+                                {
+                                    _db.SaveChanges();
+                                }
+                                catch (Exception ex)
+                                {
+                                    var b = true;
+                                }                         
                                 response.StatusCode = HttpStatusCode.OK;
                             }
                         
@@ -96,14 +110,7 @@ namespace Aug2015Backend.Controllers
                 else
                 {
                     _db.Subscriptions.Add(new SubscriptionMTEAdapter().MapData(model));   
-                    try
-                    {
-                        _db.SaveChanges();
-                    }
-                    catch (Exception ex)
-                    {
-                        var b = true;
-                    }
+                    
 
                     response.StatusCode = HttpStatusCode.OK;
                 }
