@@ -80,7 +80,7 @@ namespace Aug2015Backend.Controllers
         {
             //In our application the username of a user is his/her email adres.
             var iUser = _repo.FindByEmail(username);
-            var userToMap = _db.Users.Where(u => u.AuthUserId == iUser.Id).Single();
+            var userToMap = _db.Users.Where(u => u.AuthUserId.Equals(iUser.Id)).Single();
             return new UserETMAdapter().MapData(userToMap);
         }
 
