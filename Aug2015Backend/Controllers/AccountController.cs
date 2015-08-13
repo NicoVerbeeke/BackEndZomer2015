@@ -84,6 +84,23 @@ namespace Aug2015Backend.Controllers
             return new UserETMAdapter().MapData(userToMap);
         }
 
+        // api/account/user
+
+        [System.Web.Http.AcceptVerbs("GET")]
+        [AllowAnonymous]
+        public HttpResponseMessage getAccount()
+        {
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new ObjectContent<object>(new
+                {
+                    UserName = User.Identity.GetUserName()
+                }, Configuration.Formatters.JsonFormatter)
+            };
+
+        }
+
+
         private IHttpActionResult GetErrorResult(IdentityResult result)
         {
             if (result == null)
