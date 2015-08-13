@@ -64,10 +64,11 @@ namespace Aug2015Backend.Models
         public String AuthUserId { get; set; }
 
         public int Id { get; set; }
-
         
         [Display(Name = "e-mail")]
         [DataType(DataType.EmailAddress)]
         public override string Email { get; set; }
+
+        public ICollection<IdentityUserRole> Roles { get; set; }
     }
 }

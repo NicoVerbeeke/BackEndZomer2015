@@ -31,7 +31,7 @@ namespace Aug2015Backend.DataComponentAdapters.EntityToModel
         }
 
         public UserModel MapData(User u)
-        {            
+        {
             UserModel um = new UserModel();
             IdentityUser iUser = GetUser(u.AuthUserId);
 
@@ -46,7 +46,8 @@ namespace Aug2015Backend.DataComponentAdapters.EntityToModel
             um.PostalCode = u.PostalCode;
             um.PhoneNumber = iUser.PhoneNumber;
             um.AuthUserId = iUser.Id;
-            um.Id = u.Id;            
+            um.Id = u.Id;
+            um.Roles = iUser.Roles;
 
             return um;
         }

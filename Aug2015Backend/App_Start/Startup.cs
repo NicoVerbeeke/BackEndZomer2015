@@ -18,6 +18,9 @@ namespace Aug2015Backend.App_Start
         {
             HttpConfiguration config = new HttpConfiguration();
             ConfigureOAuth(appBuilder);
+
+
+
             //appBuilder.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             appBuilder.UseWebApi(config);
         }

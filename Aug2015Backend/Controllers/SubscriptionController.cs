@@ -94,24 +94,15 @@ namespace Aug2015Backend.Controllers
                             || ((period.DateEnd.CompareTo(wantedVacation.When.DateEnd) <= 0) && (period.DateEnd.CompareTo(wantedVacation.When.DateStart) >= 1))))
                             {
                                 _db.Subscriptions.Add(new SubscriptionMTEAdapter().MapData(model));
-                                try
-                                {
-                                    _db.SaveChanges();
-                                }
-                                catch (Exception ex)
-                                {
-                                    var b = true;
-                                }                         
+                                _db.SaveChanges();                                                     
                                 response.StatusCode = HttpStatusCode.OK;
-                            }
-                        
+                            }                        
                     }
                 }
                 else
                 {
-                    _db.Subscriptions.Add(new SubscriptionMTEAdapter().MapData(model));   
-                    
-
+                    _db.Subscriptions.Add(new SubscriptionMTEAdapter().MapData(model));
+                    _db.SaveChanges();
                     response.StatusCode = HttpStatusCode.OK;
                 }
 
