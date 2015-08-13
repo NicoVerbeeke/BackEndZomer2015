@@ -36,20 +36,22 @@ namespace Aug2015Backend.Controllers
 
         // POST api/Account/Register
         [System.Web.Http.AcceptVerbs("GET", "POST")]
-        [AllowAnonymous]
+        [Authorize]
         [Route("Register")]
         public async Task<IHttpActionResult> Register(UserModel userModel)
         {
+           
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+
+
             IdentityResult result = await _repo.RegisterUser(userModel);
 
-            IHttpActionResult errorResult = GetErrorResult(result);
-
-             
+            IHttpActionResult errorResult = GetErrorResult(result);             
 
             if (errorResult != null)
             {
@@ -71,15 +73,33 @@ namespace Aug2015Backend.Controllers
             base.Dispose(disposing);
         }
 
-        
-        // api/account/user
-        
-        [System.Web.Http.AcceptVerbs("GET")]
+        [Authorize]
+        public UserModel getAccounts([FromUri] string username)
+        {
+            var identity = (ClaimsIdentity)User.Identity;
+            var userModel = new UserModel();
+            if (identity.GetUserId().Equals(_repo.FindByEmail(username).Id))
+            {
+                //In our application the username of a user is his/her email adres.
+                var iUser = _repo.FindByEmail(username);
+                var userToMap = _db.Users.Where(u => u.AuthUserId.Equals(iUser.Id)).Single();
+                userModel = new UserETMAdapter().MapData(userToMap);
+            }
+            else
+            {
+                throw new HttpResponseException(HttpStatusCode.Unauthorized);
+            }
+
+            return userModel;
+        }
+
+        // api/account/{userId}     
+        [AcceptVerbs("GET")]
         [Authorize(Roles = "Admin")]
-        public async Task<UserModel> getAccount([FromUri] string username)
+        public UserModel getAccounts([FromUri] string username, [FromUri]string role)
         {
             //In our application the username of a user is his/her email adres.
-            var iUser = await _repo.FindByEmail(username);
+            var iUser = _repo.FindByEmail(username);
             var userToMap = _db.Users.Where(u => u.AuthUserId.Equals(iUser.Id)).Single();
             return new UserETMAdapter().MapData(userToMap);
         }

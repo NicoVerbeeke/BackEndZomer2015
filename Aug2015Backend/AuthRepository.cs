@@ -55,9 +55,9 @@ namespace Aug2015Backend
             return user;
         }
 
-        public async Task<IdentityUser> FindByEmail(string email)
+        public IdentityUser FindByEmail(string email)
         {
-            return await _userManager.FindByEmailAsync(email);
+            return _userManager.FindByEmail(email);
         }
 
         public void Dispose()

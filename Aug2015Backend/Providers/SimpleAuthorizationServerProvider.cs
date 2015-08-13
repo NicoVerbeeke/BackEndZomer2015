@@ -28,31 +28,29 @@ namespace Aug2015Backend
             RoleManager<IdentityRole> _roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(_auth));
 
             AuthRepository _repo = new AuthRepository();
-                IdentityUser user = await _repo.FindUser(context.UserName, context.Password);
+            IdentityUser user = await _repo.FindUser(context.UserName, context.Password);
                 
-                if (user == null)
-                {
-                    context.SetError("invalid_grant", "The user name or password is incorrect.");
-                    return;
-                }
+            if (user == null)
+            {
+                context.SetError("invalid_grant", "The user name or password is incorrect.");
+                return;
+            }
 
 
-                var userIdentity = await _userManager.CreateIdentityAsync(user, context.Options.AuthenticationType);
+            var userIdentity = await _userManager.CreateIdentityAsync(user, context.Options.AuthenticationType);
 
-                foreach (IdentityUserRole role in user.Roles)
-                {
-                    var iRole = _roleManager.FindById(role.RoleId);
-                    userIdentity.AddClaim(new Claim(ClaimTypes.Role, iRole.Name));
-                }
+            foreach (IdentityUserRole role in user.Roles)
+            {
+                var iRole = _roleManager.FindById(role.RoleId);
+                userIdentity.AddClaim(new Claim(ClaimTypes.Role, iRole.Name));
+            }
             
             userIdentity.AddClaim(new Claim("sub", context.UserName));
             userIdentity.AddClaim(new Claim("role", "user"));
-
+            
             var ticket = new AuthenticationTicket(userIdentity, null);
 
-
             context.Validated(ticket);
-
         }
     }
 }
