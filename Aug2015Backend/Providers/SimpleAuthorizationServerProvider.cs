@@ -25,6 +25,7 @@ namespace Aug2015Backend
             //context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
             AuthContext _auth = new AuthContext();
             UserManager<IdentityUser> _userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(_auth));
+            RoleManager<IdentityRole> _roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(_auth));
 
             AuthRepository _repo = new AuthRepository();
                 IdentityUser user = await _repo.FindUser(context.UserName, context.Password);
@@ -35,14 +36,20 @@ namespace Aug2015Backend
                     return;
                 }
 
+
                 var userIdentity = await _userManager.CreateIdentityAsync(user, context.Options.AuthenticationType);
 
-                var identity = new ClaimsIdentity();
-            userIdentity.AddClaim(new Claim(ClaimTypes.Role, "Admin"));
+                foreach (IdentityUserRole role in user.Roles)
+                {
+                    var iRole = _roleManager.FindById(role.RoleId);
+                    userIdentity.AddClaim(new Claim(ClaimTypes.Role, iRole.Name));
+                }
+            
             userIdentity.AddClaim(new Claim("sub", context.UserName));
             userIdentity.AddClaim(new Claim("role", "user"));
 
             var ticket = new AuthenticationTicket(userIdentity, null);
+
 
             context.Validated(ticket);
 
