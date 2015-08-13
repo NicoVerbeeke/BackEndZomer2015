@@ -36,18 +36,14 @@ namespace Aug2015Backend.Controllers
 
         // POST api/Account/Register
         [System.Web.Http.AcceptVerbs("GET", "POST")]
-        [Authorize]
+        [AllowAnonymous]
         [Route("Register")]
         public async Task<IHttpActionResult> Register(UserModel userModel)
-        {
-           
-
+        {         
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-
 
             IdentityResult result = await _repo.RegisterUser(userModel);
 
@@ -58,6 +54,7 @@ namespace Aug2015Backend.Controllers
                 return errorResult;
             }
             _db.Users.Add(await new UserMTEAdapter().MapData(userModel));
+
             _db.SaveChanges();
 
             return Ok();

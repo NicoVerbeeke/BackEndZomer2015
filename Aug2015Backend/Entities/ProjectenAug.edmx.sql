@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/12/2015 17:00:43
+-- Date Created: 08/13/2015 17:03:34
 -- Generated from EDMX file: C:\Users\Nico\Documents\ProjectenAugustus2015\BackEndZomer2015\Aug2015Backend\Entities\ProjectenAug.edmx
 -- --------------------------------------------------
 
@@ -187,7 +187,7 @@ CREATE TABLE [dbo].[Users] (
     [LastName] nvarchar(max)  NOT NULL,
     [Street] nvarchar(max)  NOT NULL,
     [HouseNr] nvarchar(max)  NOT NULL,
-    [Bus] nvarchar(max)  NOT NULL,
+    [Bus] nvarchar(max)  NULL,
     [City] nvarchar(max)  NOT NULL,
     [PostalCode] nvarchar(max)  NOT NULL,
     [AuthUserId] nvarchar(max)  NOT NULL

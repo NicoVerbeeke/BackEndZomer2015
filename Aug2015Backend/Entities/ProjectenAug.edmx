@@ -158,7 +158,7 @@
     <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Street" Type="nvarchar(max)" Nullable="false" />
     <Property Name="HouseNr" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Bus" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Bus" Type="nvarchar(max)" Nullable="true" />
     <Property Name="City" Type="nvarchar(max)" Nullable="false" />
     <Property Name="PostalCode" Type="nvarchar(max)" Nullable="false" />
     <Property Name="AuthUserId" Type="nvarchar(max)" Nullable="false" />
@@ -576,7 +576,7 @@
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Street" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="HouseNr" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Bus" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Bus" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="City" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="AuthUserId" Type="String" Nullable="false" />
