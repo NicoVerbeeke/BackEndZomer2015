@@ -75,14 +75,16 @@ namespace Aug2015Backend.Controllers
         // api/account/user
         
         [System.Web.Http.AcceptVerbs("GET")]
-        [AllowAnonymous]
-        public UserModel getAccount([FromUri] string username)
+        [Authorize(Roles = "Admin")]
+        public async Task<UserModel> getAccount([FromUri] string username)
         {
             //In our application the username of a user is his/her email adres.
-            var iUser = _repo.FindByEmail(username);
+            var iUser = await _repo.FindByEmail(username);
             var userToMap = _db.Users.Where(u => u.AuthUserId.Equals(iUser.Id)).Single();
             return new UserETMAdapter().MapData(userToMap);
         }
+
+
 
         private IHttpActionResult GetErrorResult(IdentityResult result)
         {

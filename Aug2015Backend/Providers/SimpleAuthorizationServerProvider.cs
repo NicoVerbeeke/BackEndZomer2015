@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Aug2015Backend.DataBaseContext;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
 using System;
 using System.Collections.Generic;
@@ -18,25 +21,30 @@ namespace Aug2015Backend
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-
+           
             //context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
+            AuthContext _auth = new AuthContext();
+            UserManager<IdentityUser> _userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(_auth));
 
-            using (AuthRepository _repo = new AuthRepository())
-            {
+            AuthRepository _repo = new AuthRepository();
                 IdentityUser user = await _repo.FindUser(context.UserName, context.Password);
-
+                
                 if (user == null)
                 {
                     context.SetError("invalid_grant", "The user name or password is incorrect.");
                     return;
                 }
-            }
 
-            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            identity.AddClaim(new Claim("sub", context.UserName));
-            identity.AddClaim(new Claim("role", "user"));
+                var userIdentity = await _userManager.CreateIdentityAsync(user, context.Options.AuthenticationType);
 
-            context.Validated(identity);
+                var identity = new ClaimsIdentity();
+            userIdentity.AddClaim(new Claim(ClaimTypes.Role, "Admin"));
+            userIdentity.AddClaim(new Claim("sub", context.UserName));
+            userIdentity.AddClaim(new Claim("role", "user"));
+
+            var ticket = new AuthenticationTicket(userIdentity, null);
+
+            context.Validated(ticket);
 
         }
     }
