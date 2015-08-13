@@ -66,6 +66,7 @@ namespace Aug2015Backend.Controllers
 
         // api/vacation -> PUT Verb
         // update a single vacation, the id is fetched from the model that needs to be send in the body of the request
+        [Authorize(Roles="Admin")]
         public int PutVacation(VacationModel vacModel)
         {
             var original = _db.Vacations.Find(vacModel.Id);
@@ -133,6 +134,7 @@ namespace Aug2015Backend.Controllers
         
         // api/vacation -> POST Verb
         // add a vacation to the list
+        [Authorize(Roles = "Admin")]
         public void PostVacation(VacationModel vacModel)
         {
             Vacation vac = _vacToEntityAdapter.MapData(vacModel);
@@ -144,6 +146,7 @@ namespace Aug2015Backend.Controllers
 
         // api/vacation/{id} -> DELETE Verb
         // deletes the vacation with the id supplied in the url
+        [Authorize(Roles = "Admin")]
         public HttpResponseMessage DeleteVacation(int id)
         {
             HttpResponseMessage response = new HttpResponseMessage();          

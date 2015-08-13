@@ -12,8 +12,10 @@ using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
 
 namespace Aug2015Backend.Controllers
 {
@@ -29,17 +31,35 @@ namespace Aug2015Backend.Controllers
         //GET -> api/Account/Subs/{id}?type={type}
         // type = vacation => returns all subscriptions for the vacation with id = {id}
         // type = user => returns all subscriptions for the user with id = {id}
-        //gets all subscriptions for the given userid
+        // gets all subscriptions for the given userid
         [AcceptVerbs("GET")]
+        [Authorize]
         public List<SubscriptionModel> GetSubscription(int id, [FromUri] string type)
         {
             List<Subscription> subs = new List<Subscription>();
             List<SubscriptionModel> subModels = new List<SubscriptionModel>();
 
-            switch (type) { 
-                case "vacation": subs = _db.Subscriptions.Where(s => s.VacationId == id).ToList();
+            var identity = (ClaimsIdentity)User.Identity;
+           
+            switch (type) {
+                case "vacation": 
+                    if (User.IsInRole("Admin")) { 
+                        subs = _db.Subscriptions.Where(s => s.VacationId == id).ToList(); 
+                    }
+                    else
+                    {
+                        throw new HttpResponseException(HttpStatusCode.Unauthorized);
+                    }
                     break;
-                case "user": subs = _db.Subscriptions.Where(s => s.UserId == id).ToList();
+                case "user": 
+                    if (User.IsInRole("Admin") || (identity.GetUserId().Equals(_db.Users.Find(id).AuthUserId)))
+                    { 
+                        subs = _db.Subscriptions.Where(s => s.UserId == id).ToList(); 
+                    }
+                    else
+                    {
+                        throw new HttpResponseException(HttpStatusCode.Unauthorized);
+                    }
                     break;
                 default: return subModels;                
             }               
@@ -56,6 +76,7 @@ namespace Aug2015Backend.Controllers
         // Expects a SubscriptionModel in its body, for more details have a look at SubscriptionModel.js
         [Route("api/Subscribe")]
         [AcceptVerbs("POST")]
+        [Authorize]
         public HttpResponseMessage PostSubscribe(SubscriptionModel model)
         {
             HttpResponseMessage response = new HttpResponseMessage();
@@ -63,17 +84,17 @@ namespace Aug2015Backend.Controllers
             if (!ModelState.IsValid)
             {
                 var b = BadRequest(ModelState);
-
             }
 
             int VacId = model.VacId;
             int UserId = model.UserId;
-            
+           
 
             Vacation wantedVacation = _db.Vacations.Find(VacId);
             int subscriptionsAmount = _db.Subscriptions.Where(s => s.VacationId == VacId).Count();
             if ((wantedVacation.NumberOfParticipants - subscriptionsAmount) > 1)
             {
+                bool ValidSubscription = true;
                 List<Subscription> subscriptions = _db.Subscriptions.Where(s => s.UserId == UserId).ToList();
                 if (subscriptions.Count > 0)
                 {
@@ -89,14 +110,27 @@ namespace Aug2015Backend.Controllers
 
                         //if the starting and ending date of the listed vacation do not lie in between the starting and ending date of the vacation with a pending subscription
                         // wantedVacation.When.DateStart <= period.DateStart <= twantedVacation.When.DateEnd
-                        if(!(((period.DateStart.CompareTo(wantedVacation.When.DateEnd) <= 0) && (period.DateStart.CompareTo(wantedVacation.When.DateStart) >= 1))
+                        if((((period.DateStart.CompareTo(wantedVacation.When.DateEnd) <= 0) && (period.DateStart.CompareTo(wantedVacation.When.DateStart) >= 1))
                             // wantedVacation.When.DateStart <= period.DateEnd <= twantedVacation.When.DateEnd
                             || ((period.DateEnd.CompareTo(wantedVacation.When.DateEnd) <= 0) && (period.DateEnd.CompareTo(wantedVacation.When.DateStart) >= 1))))
                             {
-                                _db.Subscriptions.Add(new SubscriptionMTEAdapter().MapData(model));
-                                _db.SaveChanges();                                                     
-                                response.StatusCode = HttpStatusCode.OK;
-                            }                        
+
+                                ValidSubscription = false;
+                            }
+                        if (model.RNR.Equals(s.RNR))
+                        {
+                            ValidSubscription = false;
+                        }
+                    }
+                    if (ValidSubscription)
+                    {
+                        _db.Subscriptions.Add(new SubscriptionMTEAdapter().MapData(model));
+                        _db.SaveChanges();
+                        response.StatusCode = HttpStatusCode.OK;
+                    }
+                    else
+                    {
+                        response.StatusCode = HttpStatusCode.NotAcceptable;
                     }
                 }
                 else
@@ -104,11 +138,7 @@ namespace Aug2015Backend.Controllers
                     _db.Subscriptions.Add(new SubscriptionMTEAdapter().MapData(model));
                     _db.SaveChanges();
                     response.StatusCode = HttpStatusCode.OK;
-                }
-
-                SubscriptionModel sm = new SubscriptionModel();
-                sm.VacId = VacId;
-                
+                }                
             }
             else
             {
