@@ -1,4 +1,5 @@
-﻿using Aug2015Backend.Entities;
+﻿using Aug2015Backend.DataBaseContext;
+using Aug2015Backend.Entities;
 using Aug2015Backend.Models.ModelHelpers;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,12 @@ namespace Aug2015Backend.DataComponentAdapters
 {
     public class AgeRangeMTEAdapter
     {
+        private DataContext _db = new DataContext();
+        
         public ICollection<AgeRange> MapData(ICollection<AgeRangeModel> ar, int vacId)
         {
             ICollection<AgeRange> ageRanges = new List<AgeRange>();
+
 
             foreach (AgeRangeModel range in ar)
             { 
@@ -27,8 +31,7 @@ namespace Aug2015Backend.DataComponentAdapters
             mappedAgeRange.Id = arm.Id;
             mappedAgeRange.Min_leeftijd = arm.Min_leeftijd;
             mappedAgeRange.Max_leeftijd = arm.Max_leeftijd;
-            mappedAgeRange.Vacation.Id = vacId;
-
+            mappedAgeRange.Vacation = _db.Vacations.Find(vacId);
             return mappedAgeRange;
         }
 

@@ -27,7 +27,6 @@ namespace Aug2015Backend.Entities
         public string PromoText { get; set; }
         public bool Tax_Benefit { get; set; }
     
-        public virtual AgeRange AgeRange { get; set; }
         public virtual ICollection<Comment> Comment { get; set; }
         public virtual ContactInformation ContactInformation { get; set; }
         public virtual Location Location { get; set; }
@@ -36,5 +35,6 @@ namespace Aug2015Backend.Entities
         public virtual Price Cost { get; set; }
         public virtual ICollection<IncludedItem> Included { get; set; }
         public virtual ICollection<Picture> Picture { get; set; }
+        public virtual AgeRange AgeRange { get; set; }
     }
 }

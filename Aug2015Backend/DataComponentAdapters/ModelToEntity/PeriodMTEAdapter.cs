@@ -31,7 +31,7 @@ namespace Aug2015Backend.DataComponentAdapters.ModelToEntity
                 period.PeriodNr = pm.PeriodNr;
                 period.DateStart = pm.DateStart;
                 period.DateEnd = pm.DateEnd;
-                period.Vacation.Id = p;          
+               // period.Vacation.Id = p;          
 
             return period;
         }

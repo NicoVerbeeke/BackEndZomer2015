@@ -75,10 +75,8 @@ namespace Aug2015Backend.Controllers
             {
                 original.Titel = vacModel.Titel;
 
+                UpdateAgeRange(vacModel.Leeftijd);
 
-                var originalAgeRange = original.AgeRange;
-                _db.Entry(originalAgeRange).CurrentValues.SetValues(new AgeRangeMTEAdapter().MapData(vacModel.Leeftijd, vacModel.Id));
-                  
                 var originalLocation = original.Location;
                 _db.Entry(originalLocation).CurrentValues.SetValues(new LocationMTEAdapter().MapData(vacModel.Location));
                 
@@ -122,25 +120,56 @@ namespace Aug2015Backend.Controllers
                     }
                 }  
                 var originalCover = original.Cover;
-                _db.Entry(originalCover).CurrentValues.SetValues(new PictureMTEAdapter().MapData(vacModel.Cover));
-
+               // _db.Entry(originalCover).CurrentValues.SetValues(new PictureMTEAdapter().MapData(vacModel.Cover));
+                original.Cover = new PictureMTEAdapter().MapData(vacModel.Cover);
                 original.Tax_Benefit = vacModel.Tax_Benefit;
                 _db.SaveChanges();
             }
             return original.Id;
         }
 
+        private void UpdateCoverPicture(PictureModel model)
+        {
 
+        }
+
+        private void UpdateAgeRange(AgeRangeModel model)
+        {
+            var ageRangeToEdit = _db.AgeRanges.Where(w => w.Id == model.Id).FirstOrDefault();
+            ageRangeToEdit.Max_leeftijd = model.Max_leeftijd;
+            ageRangeToEdit.Min_leeftijd = model.Min_leeftijd;
+        }
         
         // api/vacation -> POST Verb
         // add a vacation to the list
         [Authorize(Roles = "Admin")]
         public void PostVacation(VacationModel vacModel)
         {
-            Vacation vac = _vacToEntityAdapter.MapData(vacModel);
+            
+            List<Vacation> vacations = _db.Vacations.ToList();
 
+            List<int> ids = new List<int>();
+            foreach (Vacation v in vacations)
+            {
+                ids.Add(v.Id);
+            }
+
+            int max = 0;
+            if (ids.Count() > 0)
+            {
+                max = ids.Max();
+            }
+            
+            vacModel.Id = max + 1;
+            Vacation vac = _vacToEntityAdapter.MapData(vacModel);
             _db.Vacations.Add(vac);
-            _db.SaveChanges();                       
+            try
+            {
+                _db.SaveChanges();
+            }
+            catch(Exception e){
+                bool b = true;
+            }
         }
 
 

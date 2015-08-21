@@ -17,10 +17,6 @@
     <EntitySet Name="IncludedItems" EntityType="Model1.Store.IncludedItems" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Users" EntityType="Model1.Store.Users" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Subscriptions" EntityType="Model1.Store.Subscriptions" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="VacationAgeRange" Association="Model1.Store.VacationAgeRange">
-      <End Role="Vacation" EntitySet="Vacations" />
-      <End Role="AgeRange" EntitySet="AgeRanges" />
-    </AssociationSet>
     <AssociationSet Name="VacationComment" Association="Model1.Store.VacationComment">
       <End Role="Vacation" EntitySet="Vacations" />
       <End Role="Comment" EntitySet="Comments" />
@@ -60,6 +56,10 @@
     <AssociationSet Name="UserSubscription" Association="Model1.Store.UserSubscription">
       <End Role="User" EntitySet="Users" />
       <End Role="Subscription" EntitySet="Subscriptions" />
+    </AssociationSet>
+    <AssociationSet Name="VacationAgeRange" Association="Model1.Store.VacationAgeRange">
+      <End Role="Vacation" EntitySet="Vacations" />
+      <End Role="AgeRange" EntitySet="AgeRanges" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Vacations">
@@ -187,20 +187,6 @@
     <Property Name="FacturationName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Payed" Type="bit" Nullable="false" />
   </EntityType>
-  <Association Name="VacationAgeRange">
-    <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="AgeRange" Type="Model1.Store.AgeRanges" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Vacation">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="AgeRange">
-        <PropertyRef Name="Vacation_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="VacationComment">
     <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -335,6 +321,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="VacationAgeRange">
+    <End Role="Vacation" Type="Model1.Store.Vacations" Multiplicity="1" />
+    <End Role="AgeRange" Type="Model1.Store.AgeRanges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vacation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AgeRange">
+        <PropertyRef Name="Vacation_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -342,10 +340,6 @@
         <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Vacations" EntityType="Model1.Vacation" />
           <EntitySet Name="AgeRanges" EntityType="Model1.AgeRange" />
-          <AssociationSet Name="VacationAgeRange" Association="Model1.VacationAgeRange">
-            <End Role="Vacation" EntitySet="Vacations" />
-            <End Role="AgeRange" EntitySet="AgeRanges" />
-          </AssociationSet>
           <EntitySet Name="Comments" EntityType="Model1.Comment" />
           <AssociationSet Name="VacationComment" Association="Model1.VacationComment">
             <End Role="Vacation" EntitySet="Vacations" />
@@ -395,6 +389,10 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Subscription" EntitySet="Subscriptions" />
           </AssociationSet>
+          <AssociationSet Name="VacationAgeRange" Association="Model1.VacationAgeRange">
+            <End Role="Vacation" EntitySet="Vacations" />
+            <End Role="AgeRange" EntitySet="AgeRanges" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Vacation">
           <Key>
@@ -402,7 +400,6 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Titel" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="AgeRange" Relationship="Model1.VacationAgeRange" FromRole="Vacation" ToRole="AgeRange" />
           <NavigationProperty Name="Comment" Relationship="Model1.VacationComment" FromRole="Vacation" ToRole="Comment" />
           <NavigationProperty Name="ContactInformation" Relationship="Model1.VacationContactInformation" FromRole="Vacation" ToRole="ContactInformation" />
           <NavigationProperty Name="Location" Relationship="Model1.VacationLocation" FromRole="Vacation" ToRole="Location" />
@@ -414,6 +411,7 @@
           <Property Name="PromoText" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Picture" Relationship="Model1.VacationPicture" FromRole="Vacation" ToRole="Picture" />
           <Property Name="Tax_Benefit" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AgeRange" Relationship="Model1.VacationAgeRange" FromRole="Vacation" ToRole="AgeRange" />
         </EntityType>
         <EntityType Name="AgeRange">
           <Key>
@@ -424,12 +422,6 @@
           <Property Name="Max_leeftijd" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Vacation" Relationship="Model1.VacationAgeRange" FromRole="AgeRange" ToRole="Vacation" />
         </EntityType>
-        <Association Name="VacationAgeRange">
-          <End Type="Model1.Vacation" Role="Vacation" Multiplicity="1" >
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="Model1.AgeRange" Role="AgeRange" Multiplicity="0..1" />
-        </Association>
         <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="Id" />
@@ -635,6 +627,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="VacationAgeRange">
+          <End Type="Model1.Vacation" Role="Vacation" Multiplicity="1" />
+          <End Type="Model1.AgeRange" Role="AgeRange" Multiplicity="0..1" />
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -771,14 +767,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="VacationAgeRange" TypeName="Model1.VacationAgeRange" StoreEntitySet="AgeRanges">
-      <EndProperty Name="Vacation">
-        <ScalarProperty Name="Id" ColumnName="Vacation_Id" />
-      </EndProperty>
-      <EndProperty Name="AgeRange">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="VacationContactInformation" TypeName="Model1.VacationContactInformation" StoreEntitySet="ContactInformations">
       <EndProperty Name="Vacation">
         <ScalarProperty Name="Id" ColumnName="Vacation_Id" />
@@ -817,6 +805,14 @@
         <ScalarProperty Name="Id" ColumnName="Vacation_Id" />
       </EndProperty>
       <EndProperty Name="Price">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="VacationAgeRange" TypeName="Model1.VacationAgeRange" StoreEntitySet="AgeRanges">
+      <EndProperty Name="Vacation">
+        <ScalarProperty Name="Id" ColumnName="Vacation_Id" />
+      </EndProperty>
+      <EndProperty Name="AgeRange">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>

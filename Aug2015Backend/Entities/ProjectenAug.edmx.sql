@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/13/2015 17:03:34
+-- Date Created: 08/21/2015 19:29:18
 -- Generated from EDMX file: C:\Users\Nico\Documents\ProjectenAugustus2015\BackEndZomer2015\Aug2015Backend\Entities\ProjectenAug.edmx
 -- --------------------------------------------------
 
@@ -17,9 +17,6 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_VacationAgeRange]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AgeRanges] DROP CONSTRAINT [FK_VacationAgeRange];
-GO
 IF OBJECT_ID(N'[dbo].[FK_VacationComment]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Comments] DROP CONSTRAINT [FK_VacationComment];
 GO
@@ -49,6 +46,9 @@ IF OBJECT_ID(N'[dbo].[FK_VacationSubscription]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_UserSubscription]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Subscriptions] DROP CONSTRAINT [FK_UserSubscription];
+GO
+IF OBJECT_ID(N'[dbo].[FK_VacationAgeRange]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AgeRanges] DROP CONSTRAINT [FK_VacationAgeRange];
 GO
 
 -- --------------------------------------------------
@@ -292,21 +292,6 @@ GO
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- Creating foreign key on [Vacation_Id] in table 'AgeRanges'
-ALTER TABLE [dbo].[AgeRanges]
-ADD CONSTRAINT [FK_VacationAgeRange]
-    FOREIGN KEY ([Vacation_Id])
-    REFERENCES [dbo].[Vacations]
-        ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_VacationAgeRange'
-CREATE INDEX [IX_FK_VacationAgeRange]
-ON [dbo].[AgeRanges]
-    ([Vacation_Id]);
-GO
-
 -- Creating foreign key on [VacationId] in table 'Comments'
 ALTER TABLE [dbo].[Comments]
 ADD CONSTRAINT [FK_VacationComment]
@@ -455,6 +440,21 @@ GO
 CREATE INDEX [IX_FK_UserSubscription]
 ON [dbo].[Subscriptions]
     ([UserId]);
+GO
+
+-- Creating foreign key on [Vacation_Id] in table 'AgeRanges'
+ALTER TABLE [dbo].[AgeRanges]
+ADD CONSTRAINT [FK_VacationAgeRange]
+    FOREIGN KEY ([Vacation_Id])
+    REFERENCES [dbo].[Vacations]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_VacationAgeRange'
+CREATE INDEX [IX_FK_VacationAgeRange]
+ON [dbo].[AgeRanges]
+    ([Vacation_Id]);
 GO
 
 -- --------------------------------------------------
