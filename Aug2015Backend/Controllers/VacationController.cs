@@ -121,16 +121,21 @@ namespace Aug2015Backend.Controllers
                 }  
                 var originalCover = original.Cover;
                // _db.Entry(originalCover).CurrentValues.SetValues(new PictureMTEAdapter().MapData(vacModel.Cover));
-                original.Cover = new PictureMTEAdapter().MapData(vacModel.Cover);
+                if (original.Cover != null)
+                {
+                    original.Cover = new PictureMTEAdapter().MapData(vacModel.Cover);
+                }
                 original.Tax_Benefit = vacModel.Tax_Benefit;
-                _db.SaveChanges();
+                try
+                {
+                    _db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    var b = true;
+                }
             }
             return original.Id;
-        }
-
-        private void UpdateCoverPicture(PictureModel model)
-        {
-
         }
 
         private void UpdateAgeRange(AgeRangeModel model)
@@ -143,7 +148,7 @@ namespace Aug2015Backend.Controllers
         // api/vacation -> POST Verb
         // add a vacation to the list
         [Authorize(Roles = "Admin")]
-        public void PostVacation(VacationModel vacModel)
+        public int PostVacation(VacationModel vacModel)
         {
             
             List<Vacation> vacations = _db.Vacations.ToList();
@@ -167,9 +172,12 @@ namespace Aug2015Backend.Controllers
             {
                 _db.SaveChanges();
             }
-            catch(Exception e){
-                bool b = true;
+            catch (Exception e)
+            {
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.InternalServerError));
             }
+
+            return max;
         }
 
 
@@ -183,15 +191,19 @@ namespace Aug2015Backend.Controllers
 
       
             if (VacationToDelete != null)
-            {
-               
+            {               
 
                 _db.Entry(VacationToDelete.Cost).State = EntityState.Deleted;
                 _db.Entry(VacationToDelete.AgeRange).State = EntityState.Deleted;
                 _db.Entry(VacationToDelete.When).State = EntityState.Deleted;
                 _db.Entry(VacationToDelete.ContactInformation).State = EntityState.Deleted;
                 _db.Entry(VacationToDelete.Location).State = EntityState.Deleted;
-                _db.Entry(VacationToDelete.Cover).State = EntityState.Deleted;
+
+                if (VacationToDelete.Cover != null)
+                {
+                    _db.Entry(VacationToDelete.Cover).State = EntityState.Deleted;
+                }
+
                 _db.Vacations.Remove(VacationToDelete);
                 _db.SaveChanges();
                 response.StatusCode = HttpStatusCode.OK;
