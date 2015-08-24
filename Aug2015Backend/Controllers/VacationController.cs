@@ -88,27 +88,25 @@ namespace Aug2015Backend.Controllers
                 var originalPeriod = original.When;
                 _db.Entry(originalPeriod).CurrentValues.SetValues(new PeriodMTEAdapter().MapData(vacModel.When, vacModel.Id));
 
-                foreach (IncludedItem i in original.Included)
+                foreach (IncludedItem i in original.Included.ToList())
                 {
-                    foreach (IncludedItemModel im in vacModel.Included)
-                    {
-                        if (i.Id == im.Id)
-                            _db.Entry(i).CurrentValues.SetValues(new IncludedItemMTEAdapter().MapData(im));
-                    }
-                } 
+                    _db.Entry(i).State = EntityState.Deleted;                    
+                }
+
+                original.Included = new IncludedItemMTEAdapter().MapData(vacModel.Included);
 
                 var originalContactInformation = original.ContactInformation;
                 _db.Entry(originalContactInformation).CurrentValues.SetValues(new ContactInformationMTEAdapter().MapData(vacModel.ContactInformation, vacModel.Id));
 
-                foreach (Comment c in original.Comment)
+                foreach (Comment c in original.Comment.ToList())
                 {
-                    foreach (CommentModel cm in vacModel.Comment)
-                    {
-                        if (c.Id == cm.Id)
-                            _db.Entry(c).CurrentValues.SetValues(new CommentMTEAdapter().MapData(cm, vacModel.Id));
-                    }
-                }                
-                
+                    _db.Entry(c).State = EntityState.Deleted;                    
+                }
+
+                foreach (CommentModel cm in vacModel.Comment.ToList())
+                {
+                    _db.Comment.Add(new CommentMTEAdapter().MapData(cm, vacModel.Id));
+                }
                 original.PromoText = vacModel.PromoText;
 
                 foreach (Picture p in original.Picture)
