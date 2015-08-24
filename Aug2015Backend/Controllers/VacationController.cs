@@ -175,7 +175,7 @@ namespace Aug2015Backend.Controllers
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.InternalServerError));
             }
 
-            return max;
+            return vacModel.Id;
         }
 
 
