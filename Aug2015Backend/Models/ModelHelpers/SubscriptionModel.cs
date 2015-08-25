@@ -54,7 +54,7 @@ namespace Aug2015Backend.Models.ModelHelpers
         [JsonProperty(PropertyName = "Tel")]
         public String TelephoneNumber { get; set; }
 
-        [JsonProperty(PropertyName = "E-mail")]
+        [JsonProperty(PropertyName = "Email")]
         public String Email { get; set; }
 
         [JsonProperty(PropertyName = "Adres_Betalingspersoon")]

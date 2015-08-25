@@ -104,14 +104,25 @@ namespace Aug2015Backend.Controllers
         // api/account/user
 
         [System.Web.Http.AcceptVerbs("GET")]
-        [AllowAnonymous]
+        [Authorize]
         public HttpResponseMessage getAccount()
         {
+            var role="";
+            var ident = (ClaimsIdentity)User.Identity;
+            foreach (Claim claim in ident.Claims)
+            {
+                if (claim.Value == "Admin")
+                {
+                    role = claim.Value;
+                }
+            }
+            
             return new HttpResponseMessage(HttpStatusCode.OK)
             {
                 Content = new ObjectContent<object>(new
                 {
-                    UserName = User.Identity.GetUserName()
+                    UserName = User.Identity.GetUserName(),
+                    Role = role
                 }, Configuration.Formatters.JsonFormatter)
             };
 

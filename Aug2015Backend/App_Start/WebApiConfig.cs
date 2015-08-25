@@ -27,6 +27,8 @@ namespace Aug2015Backend
                 defaults: new { id = RouteParameter.Optional, action = RouteParameter.Optional }
             );
 
+            config.Filters.Add(new HostAuthenticationAttribute("bearer"));
+
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
